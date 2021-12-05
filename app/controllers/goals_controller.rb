@@ -12,8 +12,8 @@ class GoalsController < ApplicationController
   end
 
   def create
-
-    if Goal.create(goals_params)
+    @goal = current_user.goals.build(goals_params)
+    if @goal.save
       redirect_to goals_path, notice: "登録しました！"
     else
       render :new, notice: "登録に失敗しました"
@@ -28,11 +28,8 @@ class GoalsController < ApplicationController
     redirect_to goals_path, notice:"削除しました"
   end
 
-
-
-
-
   private
+  
   def set_property
     @goal = Goal.find(params[:id])
   end
