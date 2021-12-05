@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'devise'
 gem 'rexml'
+gem 'devise-i18n'
 
 
 # Reduces boot times through caching; required in config/boot.rb
