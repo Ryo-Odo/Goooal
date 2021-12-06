@@ -13,8 +13,8 @@
   <header>
     <a href="#" class="logo">Goooal</a>
     <% if user_signed_in? %>
-    <%= link_to "目標投稿", goals_path %>
     <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    <%= link_to current_user.user_account_name, goals_path %>
     <% else %>
     <%= link_to "新規登録", new_user_registration_path %>
     <%= link_to "ログイン", new_user_session_path %>
@@ -28,7 +28,14 @@
     <% if alert %>
     <p class="infomation"><%= alert %></p>
     <% end %>
-    <p class="infomation">ゴール検索</p>
+
+    <p class="infomation">
+      <% if controller_name == "goals" && action_name == "index"%>
+        ゴール検索
+      <% elsif controller_name == "goals" && action_name == "show"%>
+        ゴール詳細
+      <% end %>
+    </p>
   </div>
 
   <% unless controller_name == "registrations" || controller_name == "sessions"%>

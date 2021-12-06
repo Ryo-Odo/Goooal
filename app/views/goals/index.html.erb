@@ -1,6 +1,6 @@
 <div class="col-md-6" id="main_div">
-  <div class="main">
-    
+
+  <div class="goal_search">
     <div class="">
       <%= search_form_for @search do |f| %>
         <%= f.label :goal_title_or_description, "Keyword" %>
@@ -9,7 +9,9 @@
         <%= f.submit "検索" %>
       <% end %>
     </div>
+  </div>
 
+  <div class="goal_index">
     <table>
       <% @goals.each do |goal| %>
         <tr>
@@ -20,8 +22,8 @@
         <td><%= link_to '削除', goal_path(goal.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
       <% end %>
     </table>
-
   </div>
+  
 </div>
 
 <div class="col-md-3" id="right_div">
