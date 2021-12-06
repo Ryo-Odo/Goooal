@@ -22,35 +22,26 @@
   </header>
 
   <% unless controller_name == "registrations" || controller_name == "sessions"%>
-    <div class="container" id="content">
+    <main class="container" id="content">
       <div class="row">
 
-        <div class="col-lg-3" id="left_div">
-          <div class="left_side">
-            <h1>test1</h1>
-          </div>
+        <div class="col-md-3" id="left_div">
+          <nav class="left_side">
+            <ul class="list-group">
+              <li class="list-group-item"><a href="#">HOME</a></li>
+              <li class="list-group-item"><a href="#">マイページ</a></li>
+              <li class="list-group-item"><a href="#">目標を投稿</a></li>
+              <li class="list-group-item"><a href="#">目標を検索</a></li>
+              <li class="list-group-item"><a href="#">つぶやきを検索</a></li>
+              <li class="list-group-item"><a href="#">ユーザーを検索</a></li>
+            </ul>
+          </nav>
         </div>
 
-        <div class="col-lg-6" id="main_div">
-          <div class="main">
-            <% if notice %>
-            <p class="alert alert-notice"><%= notice %></p>
-            <% end %>
-            <% if alert %>
-            <p class="alert alert-error"><%= alert %></p>
-            <% end %>
-            <%= yield %>
-          </div>
-        </div>
-
-        <div class="col-lg-3" id="right_div">
-          <div class="right_side">
-            <h1>test</h1>
-          </div>
-        </div>
+        <%= yield %>
 
       </div>
-    </div>
+    </main>
   <% else %>
     <%= yield %>
   <% end %>

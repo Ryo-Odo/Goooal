@@ -4,8 +4,17 @@ html {
   padding: 0px;
 }
 
+/*
 * {
   border: solid 1px;
+}
+*/
+
+header {
+  width: 100%;
+  background-color: #ec7700;
+  height: 30px;
+  margin: 0;
 }
 
 .logo {
@@ -18,11 +27,13 @@ html {
 
 .left_side, .right_side {
   max-width: 330px;
+  border: solid 1px;
 }
 
 .main {
   max-width: 600px;
   margin: 0 auto;
+  border: solid 1px;
 }
 
 #main_div, #left_div, #right_div {
