@@ -4,7 +4,13 @@ class GoalsController < ApplicationController
 
 
   def index
-    @goals = Goal.all
+    #@goals = Goal.all
+    @search = Goal.ransack(params[:q])
+    @goals = @search.result(distinct: true)
+
+
+
+
   end
 
   def new
@@ -29,7 +35,7 @@ class GoalsController < ApplicationController
   end
 
   private
-  
+
   def set_property
     @goal = Goal.find(params[:id])
   end

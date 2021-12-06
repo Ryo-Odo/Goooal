@@ -1,13 +1,14 @@
 <div class="col-md-6" id="main_div">
   <div class="main">
-    <% if notice %>
-    <p class="alert alert-notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-    <p class="alert alert-error"><%= alert %></p>
-    <% end %>
-    <h1>test</h1>
-    <p><%= link_to '登録する', new_goal_path %></p>
+    
+    <div class="">
+      <%= search_form_for @search do |f| %>
+        <%= f.label :goal_title_or_description, "Keyword" %>
+        <%= f.search_field :goal_title_or_description_cont %>
+
+        <%= f.submit "検索" %>
+      <% end %>
+    </div>
 
     <table>
       <% @goals.each do |goal| %>
@@ -19,6 +20,7 @@
         <td><%= link_to '削除', goal_path(goal.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
       <% end %>
     </table>
+
   </div>
 </div>
 

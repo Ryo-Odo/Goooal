@@ -21,6 +21,16 @@
     <% end %>
   </header>
 
+  <div class="infomation">
+    <% if notice %>
+    <p class="infomation"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+    <p class="infomation"><%= alert %></p>
+    <% end %>
+    <p class="infomation">ゴール検索</p>
+  </div>
+
   <% unless controller_name == "registrations" || controller_name == "sessions"%>
     <main class="container" id="content">
       <div class="row">
