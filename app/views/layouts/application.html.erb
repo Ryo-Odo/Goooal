@@ -4,26 +4,50 @@
     <title>Goooal</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= link_to "目標投稿", goals_path %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
+    <header>
+      <a href="#" class="logo">Goooal</a>
+    </header>
+    <div class="container" id="content">
+      <div class="row">
 
-    <% if notice %>
-      <p class="alert alert-notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-error"><%= alert %></p>
-    <% end %>
-    <%= yield %>
+        <div class="col-lg-3" id="left_div">
+          <div class="left_side">
+            <% if user_signed_in? %>
+              <%= link_to "目標投稿", goals_path %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            <% else %>
+              <%= link_to "新規登録", new_user_registration_path %>
+              <%= link_to "ログイン", new_user_session_path %>
+            <% end %>
+
+            <% if notice %>
+              <p class="alert alert-notice"><%= notice %></p>
+            <% end %>
+            <% if alert %>
+              <p class="alert alert-error"><%= alert %></p>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-lg-6" id="main_div">
+          <div class="main">
+            <%= yield %>
+          </div>
+        </div>
+
+        <div class="col-lg-3" id="right_div">
+          <div class="right_side">
+            <h1>test</h1>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </body>
 </html>
