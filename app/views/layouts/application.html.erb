@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Goooal</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>Goooal</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta name="viewport" content="width=device-width">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <header>
-      <a href="#" class="logo">Goooal</a>
-    </header>
+<body>
+  <header>
+    <a href="#" class="logo">Goooal</a>
+    <% if user_signed_in? %>
+    <%= link_to "目標投稿", goals_path %>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    <% else %>
+    <%= link_to "新規登録", new_user_registration_path %>
+    <%= link_to "ログイン", new_user_session_path %>
+    <% end %>
+  </header>
+
+  <% unless controller_name == "registrations" || controller_name == "sessions"%>
     <div class="container" id="content">
       <div class="row">
 
         <div class="col-lg-3" id="left_div">
           <div class="left_side">
-            <% if user_signed_in? %>
-              <%= link_to "目標投稿", goals_path %>
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-            <% else %>
-              <%= link_to "新規登録", new_user_registration_path %>
-              <%= link_to "ログイン", new_user_session_path %>
-            <% end %>
-
-            <% if notice %>
-              <p class="alert alert-notice"><%= notice %></p>
-            <% end %>
-            <% if alert %>
-              <p class="alert alert-error"><%= alert %></p>
-            <% end %>
+            <h1>test1</h1>
           </div>
         </div>
 
         <div class="col-lg-6" id="main_div">
           <div class="main">
+            <% if notice %>
+            <p class="alert alert-notice"><%= notice %></p>
+            <% end %>
+            <% if alert %>
+            <p class="alert alert-error"><%= alert %></p>
+            <% end %>
             <%= yield %>
           </div>
         </div>
@@ -49,5 +51,8 @@
 
       </div>
     </div>
-  </body>
+  <% else %>
+    <%= yield %>
+  <% end %>
+</body>
 </html>
