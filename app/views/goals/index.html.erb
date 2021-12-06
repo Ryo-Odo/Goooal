@@ -12,18 +12,43 @@
   </div>
 
   <div class="goal_index">
+
+    <div class="condition">
+      <p class="text-center p_condition">検索条件:
+        <% if @condition.present?%>
+          <%= @condition[:goal_title_or_description_cont] %>
+        <% else %>
+          なし
+        <% end %>
+      </p>
+    </div>
+
     <table>
       <% @goals.each do |goal| %>
-        <tr>
-          <td><%= goal.goal_title %></td>
-          <td><%= goal.description %></td>
-        </tr>
-        <td><%= link_to '詳細', goal_path(goal.id) %></td>
-        <td><%= link_to '削除', goal_path(goal.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+      <tr>
+        <td>
+          <a><%= goal.user.user_account_name %></a>
+          <a>@takanashi</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a><%= link_to goal.goal_title, goal_path(goal.id) %></a>
+          <a>
+            <% if current_user == goal.user%>
+              <%= link_to '削除', goal_path(goal.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %>
+            <% end %>
+          </a>
+        </td>
+      </tr>
+      <tr class= "goal_bottom">
+        <td class="description"><%= goal.description %></td>
+      </tr>
       <% end %>
     </table>
+
   </div>
-  
+
 </div>
 
 <div class="col-md-3" id="right_div">

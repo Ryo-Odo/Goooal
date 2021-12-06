@@ -7,6 +7,11 @@ class GoalsController < ApplicationController
     #@goals = Goal.all
     @search = Goal.ransack(params[:q])
     @goals = @search.result(distinct: true)
+    @condition = ""
+
+    if params[:q].present?
+      @condition = params[:q]
+    end
 
 
 
