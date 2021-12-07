@@ -34,6 +34,8 @@
         ゴール検索
       <% elsif controller_name == "goals" && action_name == "show"%>
         ゴール詳細
+      <% elsif controller_name == "goals" && action_name == "new"%>
+        ゴール新規作成
       <% end %>
     </p>
   </div>
@@ -45,12 +47,12 @@
         <div class="col-md-3" id="left_div">
           <nav class="left_side">
             <ul class="list-group">
-              <li class="list-group-item"><a href="#">HOME</a></li>
-              <li class="list-group-item"><a href="#">マイページ</a></li>
-              <li class="list-group-item"><a href="#">目標を投稿</a></li>
-              <li class="list-group-item"><a href="#">目標を検索</a></li>
-              <li class="list-group-item"><a href="#">つぶやきを検索</a></li>
-              <li class="list-group-item"><a href="#">ユーザーを検索</a></li>
+              <li class="list-group-item"><%= link_to 'HOME', goals_path%></li>
+              <li class="list-group-item"><%= link_to 'マイページ', goals_path%></li>
+              <li class="list-group-item"><%= link_to '目標を投稿', new_goal_path%></li>
+              <li class="list-group-item"><%= link_to '目標を検索', goals_path%></li>
+              <li class="list-group-item"><%= link_to 'つぶやきを検索', goals_path%></li>
+              <li class="list-group-item"><%= link_to 'ユーザーを検索', goals_path%></li>
             </ul>
           </nav>
         </div>

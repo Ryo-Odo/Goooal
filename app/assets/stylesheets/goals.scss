@@ -38,3 +38,25 @@ table {
 .description {
   width: 100%;
 }
+
+.text_field {
+  border: solid 1px;
+  padding: 5px;
+  height: 30px;
+  width: 90%;
+  margin-top: 15px;
+}
+
+.text_area {
+  border: solid 1px;
+  padding: 5px;
+  height: 120px;
+  width: 90%;
+  margin-top: 15px;
+}
+
+.new_form {
+  border-bottom: solid 1px;
+  border-top: solid 1px;
+  text-align: center;
+}
