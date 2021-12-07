@@ -1,5 +1,5 @@
 <div class="col-md-6" id="main_div">
-  <div class="goal_search">
+  <div class="goal_create">
 
     <% if @goal.errors.any? %>
     <div id="error_explanation">
@@ -16,6 +16,7 @@
       <%= form_with( model: @goal, local: true ) do |f| %>
         <%= f.text_field :goal_title, :placeholder => "ゴールタイトルを入力", :class => 'text_field' %> <br>
         <%= f.text_area :description, :placeholder => "詳細を入力", :class => 'text_area' %> <br>
+        <%= f.text_field :goal_tag_name, :placeholder => "タグを入力", :class => 'text_field' %> <br>
         <%= f.submit "登録する" %>
       <% end %>
     </div>

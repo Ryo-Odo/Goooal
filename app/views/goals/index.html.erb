@@ -1,23 +1,37 @@
 <div class="col-md-6" id="main_div">
 
-  <div class="goal_search">
-    <div class="">
+  <div class="goal_search_1">
+    <div class="search">
       <%= search_form_for @search do |f| %>
-        <%= f.label :goal_title_or_description, "Keyword" %>
-        <%= f.search_field :goal_title_or_description_cont %>
-
-        <%= f.submit "検索" %>
+        <%= f.search_field :goal_title_or_description_cont, placeholder: "キーワード", :class => 'text_field'  %><br>
+        <%= f.submit "キーワードで検索" %>
       <% end %>
     </div>
   </div>
 
+  <div class="goal_search_2">
+    <div class="search">
+      <%= search_form_for @search do |f| %>
+        <%= f.search_field :goal_tags_goal_tag_name_eq, placeholder: "タグ名", :class => 'text_field'  %><br>
+        <%= f.submit "タグで検索" %>
+      <% end %>
+    </div>
+  </div>
+
+
   <div class="goal_index">
 
     <div class="condition">
-      <p class="text-center p_condition">検索条件:
-        <% if @condition.present?%>
-          <%= @condition[:goal_title_or_description_cont] %>
+      <p class="text-center p_condition">検索条件</p>
+      <p class="text-center p_condition">
+        <% if params[:commit].present?%>
+          <% if params[:commit] == "キーワードで検索"%>
+            キーワード: <%= params[:q][:goal_title_or_description_cont] %>
+          <% elsif params[:commit] == "タグで検索"%>
+            タグ名: <%= params[:q][:goal_tags_goal_tag_name_eq] %>
+          <% end %>
         <% else %>
+        <% puts "NGNGNGNG"%>
           なし
         <% end %>
       </p>
@@ -36,8 +50,17 @@
           <a><%= link_to goal.goal_title, goal_path(goal.id) %></a>
         </td>
       </tr>
-      <tr class= "goal_bottom">
+      <tr>
         <td class="description"><%= simple_format(goal.description) %></td>
+      </tr>
+      <tr class= "goal_bottom">
+        <td>
+          <a>タグ:
+            <% goal.goal_tags.each do |goal_tag|%>
+              <%= link_to goal_tag.goal_tag_name, goal_path(goal.id) %>
+            <% end %>
+          </a>
+        </td>
       </tr>
       <% end %>
     </table>

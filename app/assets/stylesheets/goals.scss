@@ -1,14 +1,29 @@
-.goal_search {
+.goal_search_1 {
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0 auto 15px auto;
   border: solid 1px;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
+
+.goal_search_2 {
+  max-width: 600px;
+  margin: 15px auto 0 auto;
+  border: solid 1px;
+  font-size: 1.4rem;
+}
+
 .goal_index {
   max-width: 600px;
   margin: 30px auto 0 auto;
   border-right: solid 1px;
   border-left: solid 1px;
+  font-size: 1.6rem;
+}
+
+.goal_create {
+  max-width: 600px;
+  margin: 0 auto;
+  border: solid 1px;
   font-size: 1.6rem;
 }
 
@@ -59,4 +74,10 @@ table {
   border-bottom: solid 1px;
   border-top: solid 1px;
   text-align: center;
+}
+
+.search {
+  text-align: center;
+  height: 90px;
+  padding: 15px;
 }
