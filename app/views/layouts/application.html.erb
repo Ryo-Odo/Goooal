@@ -48,7 +48,7 @@
           <nav class="left_side">
             <ul class="list-group">
               <li class="list-group-item"><%= link_to 'HOME', goals_path%></li>
-              <li class="list-group-item"><%= link_to 'マイページ', goals_path%></li>
+              <li class="list-group-item"><%= link_to 'マイページ', edit_profile_path(current_user.profile.id)%></li>
               <li class="list-group-item"><%= link_to '目標を投稿', new_goal_path%></li>
               <li class="list-group-item"><%= link_to '目標を検索', goals_path%></li>
               <li class="list-group-item"><%= link_to 'つぶやきを検索', goals_path%></li>

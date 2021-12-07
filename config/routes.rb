@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   root 'goals#index'
   resources :goals
+
   resources :users
+  resources :profiles
 
 
 end
