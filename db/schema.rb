@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_05_143045) do
+ActiveRecord::Schema.define(version: 2021_12_07_042906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "goal_taggings", force: :cascade do |t|
+    t.bigint "goal_id", null: false
+    t.bigint "goal_tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["goal_id"], name: "index_goal_taggings_on_goal_id"
+    t.index ["goal_tag_id"], name: "index_goal_taggings_on_goal_tag_id"
+  end
+
+  create_table "goal_tags", force: :cascade do |t|
+    t.string "goal_tag_name", limit: 15, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "goals", force: :cascade do |t|
     t.string "goal_title", limit: 45, null: false
@@ -36,5 +51,7 @@ ActiveRecord::Schema.define(version: 2021_12_05_143045) do
     t.index ["user_account_name"], name: "index_users_on_user_account_name", unique: true
   end
 
+  add_foreign_key "goal_taggings", "goal_tags"
+  add_foreign_key "goal_taggings", "goals"
   add_foreign_key "goals", "users"
 end
