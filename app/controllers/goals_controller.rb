@@ -4,6 +4,7 @@ class GoalsController < ApplicationController
 
 
   def index
+    binding.irb
     @search = Goal.ransack(params[:q])
     @search.sorts = 'created_at desc'
     @goals = @search.result(distinct: true)

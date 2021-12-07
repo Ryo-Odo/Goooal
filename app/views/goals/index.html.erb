@@ -57,7 +57,7 @@
         <td>
           <a>タグ:
             <% goal.goal_tags.each do |goal_tag|%>
-              <%= link_to goal_tag.goal_tag_name, goal_path(goal.id) %>
+              <%= link_to goal_tag.goal_tag_name, goals_path(:q=>{:goal_tags_goal_tag_name_eq=>goal_tag.goal_tag_name}, :commit=>"タグで検索") %>
             <% end %>
           </a>
         </td>
