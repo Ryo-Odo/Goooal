@@ -1,2 +1,39 @@
-<p>タイトル: <%= @goal.goal_title %></p>
-<p>詳細: <%= @goal.description %></p>
+<div class="col-md-6" id="main_div">
+  <div class="goal_detail">
+    <table>
+      <tr>
+        <td>
+          <a><%= @goal.user.user_account_name %></a>
+          <a>@takanashi</a>
+          <a>
+            <% if current_user == @goal.user%>
+              <%= link_to '削除', goal_path(@goal.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %>
+            <% end %>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a><%= link_to @goal.goal_title, goal_path(@goal.id) %></a>
+        </td>
+      </tr>
+      <tr>
+        <td class="description"><%= simple_format(@goal.description) %></td>
+      </tr>
+      <tr class= "goal_bottom">
+        <td>
+          <a>タグ:
+            <% @goal.goal_tags.each do |goal_tag|%>
+              <%= link_to goal_tag.goal_tag_name, goals_path(:q=>{:goal_tags_goal_tag_name_eq=>goal_tag.goal_tag_name}, :commit=>"タグで検索") %>
+            <% end %>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="col-md-3" id="right_div">
+  <div class="right_side">
+  </div>
+</div>

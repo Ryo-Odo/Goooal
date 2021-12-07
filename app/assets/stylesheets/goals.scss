@@ -17,7 +17,7 @@
   margin: 30px auto 0 auto;
   border-right: solid 1px;
   border-left: solid 1px;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .goal_create {
@@ -80,4 +80,11 @@ table {
   text-align: center;
   height: 90px;
   padding: 15px;
+}
+
+.goal_detail {
+  max-width: 600px;
+  margin: 0 auto 15px auto;
+  border: solid 1px;
+  font-size: 1.4rem;
 }

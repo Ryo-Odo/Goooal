@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-  
+
   root 'goals#index'
   resources :goals
+  resources :users
 
 
 end
