@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_07_042906) do
+ActiveRecord::Schema.define(version: 2021_12_07_131028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 2021_12_07_042906) do
     t.index ["user_id"], name: "index_goals_on_user_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "user_name", limit: 15, null: false
+    t.string "Introduction", limit: 255, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "user_account_name", limit: 15, null: false
     t.string "email", limit: 255, default: "", null: false
@@ -54,4 +63,5 @@ ActiveRecord::Schema.define(version: 2021_12_07_042906) do
   add_foreign_key "goal_taggings", "goal_tags"
   add_foreign_key "goal_taggings", "goals"
   add_foreign_key "goals", "users"
+  add_foreign_key "profiles", "users"
 end
