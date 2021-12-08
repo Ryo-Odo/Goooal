@@ -1,2 +1,84 @@
-testshow
-<%= link_to 'マイページ', edit_profile_path(@user.profile.id, :user_id=>@user)%>
+<div class="col-md-6" id="main_div">
+
+  <div class="user_detail">
+    <table class="user_table">
+      <tr>
+        <td>
+          <a><%= @user.profile.user_name %></a>
+          <a><%= "@" + @user.user_account_name %></a>
+        </td>
+      </tr>
+      <tr>
+        <td class="user_introduction"><%= simple_format(@user.profile.introduction) %></td>
+      </tr>
+      <tr>
+        <td>
+          <% if current_user == @user%>
+            <a><%= link_to 'プロフィールを編集', edit_profile_path(@user.profile.id, :user_id=>@user)%></a>
+            <a><%= link_to 'アカウント情報を編集', edit_user_registration_path %></a>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="user_tweet">
+    <div class="user_memo">
+      <p class="text-center p_condition"><%= @user.profile.user_name %>さんのつぶやき一覧</p>
+    </div>
+    <table>
+      <% @user.goals.each do |goal| %>
+      <tr>
+        <td>
+          <a>
+            <%= link_to goal.user.profile.user_name, user_path(goal.user.id) %>
+          </a>
+          <a>
+            <%= link_to "@" + goal.user.user_account_name, user_path(goal.user.id) %>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a><%= link_to goal.goal_title, goal_path(goal.id) %></a>
+        </td>
+      </tr>
+      <tr>
+        <td class="description"><%= simple_format(goal.description) %></td>
+      </tr>
+      <tr class= "goal_bottom">
+        <td>
+          <a>タグ:
+            <% goal.goal_tags.each do |goal_tag|%>
+              <%= link_to goal_tag.goal_tag_name, goals_path(:q=>{:goal_tags_goal_tag_name_eq=>goal_tag.goal_tag_name}, :commit=>"タグで検索") %>
+            <% end %>
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+
+</div>
+
+
+
+
+
+
+<div class="col-md-3" id="right_div">
+  <div class="right_goal_titles">
+    <div class="right_memo">
+      <p class="text-center p_condition"><%= @user.profile.user_name %>さんのゴール一覧</p>
+    </div>
+    <table class="table_goal_title">
+      <% @user.goals.each do |goal| %>
+      <tr class="tr_goal_title">
+        <td>
+          <a><%= link_to goal.goal_title, goal_path(goal.id) %></a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

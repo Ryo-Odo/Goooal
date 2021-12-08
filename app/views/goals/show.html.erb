@@ -3,8 +3,8 @@
     <table>
       <tr>
         <td>
-          <a><%= @goal.user.user_account_name %></a>
-          <a>@takanashi</a>
+          <a><%= link_to @goal.user.profile.user_name, user_path(@goal.user.id) %></a>
+          <a><%= link_to "@" + @goal.user.user_account_name, user_path(@goal.user.id) %></a>
           <a>
             <% if current_user == @goal.user%>
               <%= link_to '削除', goal_path(@goal.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %>

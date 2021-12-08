@@ -8,8 +8,10 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    binding.irb
+    @profile = Profile.find(params[:id])
     if @profile.update(profiles_params)
-      redirect_to user_path(params[:id]), notice: "プロフィールを編集しました"
+      redirect_to user_path(Profile.find(params[:id]).user.id), notice: "プロフィールを編集しました"
     else
       render :edit
     end
@@ -17,6 +19,6 @@ class ProfilesController < ApplicationController
 
   private
   def profiles_params
-    params.require(:profile).permit(:user_name, :Introduction)
+    params.require(:profile).permit(:user_name, :introduction)
   end
 end

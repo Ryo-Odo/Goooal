@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
      super
      if User.where(user_account_name: params[:user][:user_account_name]).present?
        user_id = User.where(user_account_name: params[:user][:user_account_name]).ids[0]
-       Profile.create(user_id: user_id, user_name: "新しいユーザー", Introduction: "自己紹介してみよう！")
+       Profile.create(user_id: user_id, user_name: "新しいユーザー", introduction: "自己紹介してみよう！")
      end
    end
 

@@ -1,3 +1,55 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.goal_detail {
+  max-width: 600px;
+  margin: 0 auto 15px auto;
+  border: solid 1px;
+  font-size: 1.4rem;
+}
+
+.user_detail {
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  border: solid 1px;
+  font-size: 1.4rem;
+}
+
+.user_introduction {
+  border: solid 1px;
+  padding: 5px;
+  height: 120px;
+}
+
+.user_table{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.user_tweet {
+  max-width: 600px;
+  margin: 0 auto;
+  border: solid 1px;
+  font-size: 1.4rem;
+}
+
+.user_memo {
+  border-bottom: solid 1px;
+  min-height: 40px;
+}
+
+.right_goal_titles {
+  max-width: 330px;
+  border: solid 1px;
+}
+
+.right_memo {
+  font-size: 1.4rem;
+}
+
+.table_goal_title {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.tr_goal_title {
+  border-top: solid 1px;
+  padding: 20px;
+}

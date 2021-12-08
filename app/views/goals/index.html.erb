@@ -1,5 +1,4 @@
 <div class="col-md-6" id="main_div">
-
   <div class="goal_search_1">
     <div class="search">
       <%= search_form_for @search do |f| %>
@@ -45,7 +44,7 @@
             <%= link_to goal.user.profile.user_name, user_path(goal.user.id) %>
           </a>
           <a>
-            <%= link_to goal.user.user_account_name, user_path(goal.user.id) %>
+            <%= link_to "@" + goal.user.user_account_name, user_path(goal.user.id) %>
           </a>
         </td>
       </tr>
