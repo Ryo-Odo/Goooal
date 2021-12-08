@@ -2,7 +2,7 @@
   <div class="goal_search_1">
     <div class="search">
       <%= search_form_for @search do |f| %>
-        <%= f.search_field :goal_title_or_description_cont, placeholder: "キーワード", :class => 'text_field'  %><br>
+        <%= f.search_field :goal_title_or_description_cont, placeholder: "キーワードを入力", :class => 'text_field'  %><br>
         <%= f.submit "キーワードで検索" %>
       <% end %>
     </div>
@@ -11,7 +11,7 @@
   <div class="goal_search_2">
     <div class="search">
       <%= search_form_for @search do |f| %>
-        <%= f.search_field :goal_tags_goal_tag_name_eq, placeholder: "タグ名", :class => 'text_field'  %><br>
+        <%= f.search_field :goal_tags_goal_tag_name_eq, placeholder: "タグ名を入力", :class => 'text_field'  %><br>
         <%= f.submit "タグで検索" %>
       <% end %>
     </div>
@@ -30,7 +30,6 @@
             タグ名: <%= params[:q][:goal_tags_goal_tag_name_eq] %>
           <% end %>
         <% else %>
-        <% puts "NGNGNGNG"%>
           なし
         <% end %>
       </p>

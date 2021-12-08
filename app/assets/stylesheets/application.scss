@@ -21,8 +21,6 @@ html {
   overflow-y: scroll;
 }
 
-
-
 header {
   width: 100%;
   background-color: #ec7700;
@@ -41,8 +39,6 @@ header {
   margin: 0 auto;
 }
 
-
-
 .logo {
   font-size:2rem;
 }
@@ -56,7 +52,20 @@ header {
   border: solid 1px;
 }
 
-
 #main_div, #left_div, #right_div {
   padding: 0;
+}
+
+.goal_search_1 {
+  max-width: 600px;
+  margin: 0 auto 15px auto;
+  border: solid 1px;
+  font-size: 1.4rem;
+}
+
+.goal_search_2 {
+  max-width: 600px;
+  margin: 15px auto 0 auto;
+  border: solid 1px;
+  font-size: 1.4rem;
 }
