@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   root 'goals#index'
   resources :goals
 
-  resources :users
+  resources :users, only: [:show, :index]
   resources :profiles
 
 
