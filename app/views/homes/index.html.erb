@@ -1,0 +1,18 @@
+<div class="col-md-6" id="main_div">
+  <div class="goal_search_1">
+
+    <div class="new_form">
+      <%= form_with( model: @tweet, local: true ) do |f| %>
+        <%= f.select :goal_id, @goal_titles, {},:class => 'select_field'  %>
+        <%= f.text_area :content, :placeholder => "詳細を入力", :class => 'text_area' %> <br>
+        <%= f.submit "登録する" %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<div class="col-md-3" id="right_div">
+  <div class="right_side">
+  </div>
+</div>

@@ -4,4 +4,5 @@ class Goal < ApplicationRecord
   belongs_to :user
   has_many :goal_taggings, dependent: :destroy
   has_many :goal_tags, through: :goal_taggings, source: :goal_tag
+  has_many :tweets, dependent: :destroy
 end

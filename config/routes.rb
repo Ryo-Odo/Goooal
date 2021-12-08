@@ -8,11 +8,11 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
-  root 'goals#index'
+  root 'homes#index'
   resources :goals
-
   resources :users, only: [:show, :index]
   resources :profiles
+  resources :tweets
 
 
 end
