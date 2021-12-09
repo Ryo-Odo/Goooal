@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.order(created_at: "desc")
     @tweet = Tweet.new
 
     if current_user.goals.count == 0

@@ -1,6 +1,5 @@
 <div class="col-md-6" id="main_div">
   <div class="goal_search_1">
-
     <div class="new_form">
       <%= form_with( model: @tweet, local: true ) do |f| %>
         <%= f.select :goal_id, @goal_titles, {},:class => 'select_field'  %>
@@ -8,8 +7,54 @@
         <%= f.submit "登録する" %>
       <% end %>
     </div>
-
   </div>
+
+  <div class="goal_index">
+
+    <div class="condition">
+      <p class="text-center p_condition">ツイート一覧：すべてのユーザー</p>
+    </div>
+
+    <table>
+      <% @tweets.each do |tweet| %>
+      <tr>
+        <td>
+          <a>
+            <%= link_to tweet.goal.user.profile.user_name, user_path(tweet.goal.user.id) %>
+          </a>
+          <a>
+            <%= link_to "@" + tweet.goal.user.user_account_name, user_path(tweet.goal.user.id) %>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a><%= link_to tweet.goal.goal_title, goal_path(tweet.goal.id) %></a>
+        </td>
+      </tr>
+      <tr>
+        <td class="description"><%= simple_format(tweet.content) %></td>
+      </tr>
+      <tr>
+        <td>
+          <a>タグ:
+            <% tweet.goal.goal_tags.each do |goal_tag|%>
+              <%= link_to goal_tag.goal_tag_name, goals_path(:q=>{:goal_tags_goal_tag_name_eq=>goal_tag.goal_tag_name}, :commit=>"タグで検索") %>
+            <% end %>
+          </a>
+        </td>
+      </tr>
+      <tr class= "goal_bottom">
+        <td>
+          <a>
+            <%= tweet.created_at.strftime('%Y年%m月%d日 %H:%M')%>
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+
 </div>
 
 <div class="col-md-3" id="right_div">
