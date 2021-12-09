@@ -35,6 +35,7 @@ class GoalsController < ApplicationController
   end
 
   def show
+    @tweets = @goal.tweets.order(created_at: "desc")
   end
 
   def destroy

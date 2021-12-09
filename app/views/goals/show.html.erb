@@ -1,4 +1,5 @@
 <div class="col-md-6" id="main_div">
+
   <div class="goal_detail">
     <table>
       <tr>
@@ -31,6 +32,51 @@
       </tr>
     </table>
   </div>
+
+  <div class="user_tweet">
+    <div class="user_memo">
+      <p class="text-center p_condition">目標「<%= @goal.goal_title %>」のつぶやき一覧</p>
+    </div>
+    <table>
+      <% @tweets.each do |tweet| %>
+      <tr>
+        <td>
+          <a>
+            <%= link_to tweet.goal.user.profile.user_name, user_path(@goal.user.id) %>
+          </a>
+          <a>
+            <%= link_to "@" + tweet.goal.user.user_account_name, user_path(@goal.user.id) %>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a><%= link_to tweet.goal.goal_title, goal_path(tweet.goal.id) %></a>
+        </td>
+      </tr>
+      <tr>
+        <td class="description"><%= simple_format(tweet.content) %></td>
+      </tr>
+      <tr class= "">
+        <td>
+          <a>タグ:
+            <% tweet.tweet_tags.each do |tweet_tag|%>
+              <%= link_to tweet_tag.tweet_tag_name, tweets_path(:q=>{:goal_tags_goal_tag_name_eq=>tweet_tag.tweet_tag_name}, :commit=>"タグで検索") %>
+            <% end %>
+          </a>
+        </td>
+      </tr>
+      <tr class= "goal_bottom">
+        <td>
+          <a>
+            <%= tweet.created_at.strftime('%Y年%m月%d日 %H:%M')%>
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+
 </div>
 
 <div class="col-md-3" id="right_div">

@@ -27,31 +27,38 @@
       <p class="text-center p_condition"><%= @user.profile.user_name %>さんのつぶやき一覧</p>
     </div>
     <table>
-      <% @user.goals.each do |goal| %>
+      <% @tweets.each do |tweet| %>
       <tr>
         <td>
           <a>
-            <%= link_to goal.user.profile.user_name, user_path(goal.user.id) %>
+            <%= link_to tweet.goal.user.profile.user_name, user_path(@user.id) %>
           </a>
           <a>
-            <%= link_to "@" + goal.user.user_account_name, user_path(goal.user.id) %>
+            <%= link_to "@" + tweet.goal.user.user_account_name, user_path(@user.id) %>
           </a>
         </td>
       </tr>
       <tr>
         <td>
-          <a><%= link_to goal.goal_title, goal_path(goal.id) %></a>
+          <a><%= link_to tweet.goal.goal_title, goal_path(tweet.goal.id) %></a>
         </td>
       </tr>
       <tr>
-        <td class="description"><%= simple_format(goal.description) %></td>
+        <td class="description"><%= simple_format(tweet.content) %></td>
+      </tr>
+      <tr class= "">
+        <td>
+          <a>タグ:
+            <% tweet.tweet_tags.each do |tweet_tag|%>
+              <%= link_to tweet_tag.tweet_tag_name, tweets_path(:q=>{:goal_tags_goal_tag_name_eq=>tweet_tag.tweet_tag_name}, :commit=>"タグで検索") %>
+            <% end %>
+          </a>
+        </td>
       </tr>
       <tr class= "goal_bottom">
         <td>
-          <a>タグ:
-            <% goal.goal_tags.each do |goal_tag|%>
-              <%= link_to goal_tag.goal_tag_name, goals_path(:q=>{:goal_tags_goal_tag_name_eq=>goal_tag.goal_tag_name}, :commit=>"タグで検索") %>
-            <% end %>
+          <a>
+            <%= tweet.created_at.strftime('%Y年%m月%d日 %H:%M')%>
           </a>
         </td>
       </tr>
@@ -67,6 +74,7 @@
 
 
 <div class="col-md-3" id="right_div">
+
   <div class="right_goal_titles">
     <div class="right_memo">
       <p class="text-center p_condition"><%= @user.profile.user_name %>さんのゴール一覧</p>
@@ -81,4 +89,5 @@
       <% end %>
     </table>
   </div>
+
 </div>

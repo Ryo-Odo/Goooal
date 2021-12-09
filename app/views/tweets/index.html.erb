@@ -1,0 +1,77 @@
+<div class="col-md-6" id="main_div">
+  <div class="goal_search_1">
+    <div class="search">
+      <%= search_form_for @search do |f| %>
+        <%= f.search_field :content_cont, placeholder: "キーワードを入力", :class => 'text_field'  %><br>
+        <%= f.submit "キーワードで検索" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="goal_search_2">
+    <div class="search">
+      <%= search_form_for @search do |f| %>
+        <%= f.search_field :tweet_tags_tweet_tag_name_eq, placeholder: "タグ名を入力", :class => 'text_field'  %><br>
+        <%= f.submit "タグで検索" %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="goal_index">
+
+    <div class="condition">
+      <p class="text-center p_condition">検索条件</p>
+      <p class="text-center p_condition">
+        <% if params[:commit].present?%>
+          <% if params[:commit] == "キーワードで検索"%>
+            キーワード: <%= params[:q][:content_cont] %>
+          <% elsif params[:commit] == "タグで検索"%>
+            タグ名: <%= params[:q][:tweet_tags_tweet_tag_name_eq] %>
+          <% end %>
+        <% else %>
+          なし
+        <% end %>
+      </p>
+    </div>
+
+    <table>
+      <% @tweets.each do |tweet| %>
+      <tr>
+        <td>
+          <a>
+            <%= link_to tweet.goal.user.profile.user_name, user_path(tweet.goal.user.id) %>
+          </a>
+          <a>
+            <%= link_to "@" + tweet.goal.user.user_account_name, user_path(tweet.goal.user.id) %>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a><%= link_to tweet.goal.goal_title, goal_path(tweet.goal.id) %></a>
+        </td>
+      </tr>
+      <tr>
+        <td class="description"><%= simple_format(tweet.content) %></td>
+      </tr>
+      <tr class= "goal_bottom">
+        <td>
+          <a>タグ:
+            <% tweet.tweet_tags.each do |tweet_tag|%>
+              <%= link_to tweet_tag.tweet_tag_name, tweets_path(:q=>{:tweet_tags_tweet_tag_name_eq=>tweet_tag.tweet_tag_name}, :commit=>"タグで検索") %>
+            <% end %>
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+
+  </div>
+
+</div>
+
+<div class="col-md-3" id="right_div">
+  <div class="right_side">
+  </div>
+</div>

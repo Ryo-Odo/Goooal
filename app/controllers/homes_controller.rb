@@ -2,6 +2,8 @@ class HomesController < ApplicationController
   def index
     @tweets = Tweet.order(created_at: "desc")
     @tweet = Tweet.new
+    @users = User.all
+    @goals = Goal.all
 
     if current_user.goals.count == 0
       @goal_titles = [["まだゴールを投稿していません、サイドバーからゴールを投稿しよう！", "no_goal"]]

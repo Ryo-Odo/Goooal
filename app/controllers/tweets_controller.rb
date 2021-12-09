@@ -1,4 +1,11 @@
 class TweetsController < ApplicationController
+  def index
+    @search = Tweet.ransack(params[:q])
+    @search.sorts = 'created_at desc'
+    @tweets = @search.result(distinct: true)
+  end
+
+
   def create
     if params[:tweet][:goal_id] == "no_goal"
       redirect_to root_path, notice: "まずはサイドバーから「ゴールを投稿」しよう！"

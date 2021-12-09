@@ -40,7 +40,7 @@
         <td>
           <a>タグ:
             <% tweet.tweet_tags.each do |tweet_tag|%>
-              <%= link_to tweet_tag.tweet_tag_name, root_path, :commit=>"タグで検索" %>
+              <%= link_to tweet_tag.tweet_tag_name, tweets_path(:q=>{:tweet_tags_tweet_tag_name_eq=>tweet_tag.tweet_tag_name}, :commit=>"タグで検索") %>
             <% end %>
           </a>
         </td>
@@ -59,6 +59,42 @@
 </div>
 
 <div class="col-md-3" id="right_div">
-  <div class="right_side">
+
+  <div class="right_div_1">
+    <div class="right_memo">
+      <p class="text-center p_condition">みんなの新しい目標一覧</p>
+    </div>
+    <table class="right_table">
+      <% @goals.each do |goal| %>
+      <tr class="right_tr", align="left">
+        <td>
+          <a><%= link_to goal.user.profile.user_name, user_path(goal.user.id) %></a>
+          <a><%= link_to goal.user.user_account_name, user_path(goal.user.id) %></a>
+        </td>
+      </tr>
+      <tr class="">
+        <td>
+          <a><%= link_to goal.goal_title, goal_path(goal.id) %></a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
   </div>
+
+  <div class="right_div_2">
+    <div class="right_memo">
+      <p class="text-center p_condition">新着ユーザー一覧</p>
+    </div>
+    <table class="right_table">
+      <% @users.each do |user| %>
+      <tr class="right_tr">
+        <td>
+          <a><%= link_to user.profile.user_name, user_path(user.id) %></a>
+          <a><%= link_to user.user_account_name, user_path(user.id) %></a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+
 </div>
