@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_08_091648) do
+ActiveRecord::Schema.define(version: 2021_12_09_050655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,21 @@ ActiveRecord::Schema.define(version: 2021_12_08_091648) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "tweet_taggings", force: :cascade do |t|
+    t.bigint "tweet_id", null: false
+    t.bigint "tweet_tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tweet_id"], name: "index_tweet_taggings_on_tweet_id"
+    t.index ["tweet_tag_id"], name: "index_tweet_taggings_on_tweet_tag_id"
+  end
+
+  create_table "tweet_tags", force: :cascade do |t|
+    t.string "tweet_tag_name", limit: 15, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tweets", force: :cascade do |t|
     t.bigint "goal_id", null: false
     t.string "content", limit: 140, null: false
@@ -72,5 +87,7 @@ ActiveRecord::Schema.define(version: 2021_12_08_091648) do
   add_foreign_key "goal_taggings", "goals"
   add_foreign_key "goals", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "tweet_taggings", "tweet_tags"
+  add_foreign_key "tweet_taggings", "tweets"
   add_foreign_key "tweets", "goals"
 end

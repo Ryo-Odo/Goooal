@@ -15,6 +15,7 @@ class GoalsController < ApplicationController
   end
 
   def create
+    binding.irb
     @goal = current_user.goals.new(goals_params)
     goal_tag_list = params[:goal][:goal_tag_name].gsub(/　/," ").strip.split(nil)
 

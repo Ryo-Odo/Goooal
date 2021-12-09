@@ -4,6 +4,7 @@
       <%= form_with( model: @tweet, local: true ) do |f| %>
         <%= f.select :goal_id, @goal_titles, {},:class => 'select_field'  %>
         <%= f.text_area :content, :placeholder => "詳細を入力", :class => 'text_area' %> <br>
+        <%= f.text_field :tweet_tag_name, :placeholder => "タグを入力", :class => 'text_field' %> <br>
         <%= f.submit "登録する" %>
       <% end %>
     </div>
@@ -38,8 +39,8 @@
       <tr>
         <td>
           <a>タグ:
-            <% tweet.goal.goal_tags.each do |goal_tag|%>
-              <%= link_to goal_tag.goal_tag_name, goals_path(:q=>{:goal_tags_goal_tag_name_eq=>goal_tag.goal_tag_name}, :commit=>"タグで検索") %>
+            <% tweet.tweet_tags.each do |tweet_tag|%>
+              <%= link_to tweet_tag.tweet_tag_name, root_path, :commit=>"タグで検索" %>
             <% end %>
           </a>
         </td>
