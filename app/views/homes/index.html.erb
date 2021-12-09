@@ -34,7 +34,7 @@
         </td>
       </tr>
       <tr>
-        <td class="description"><%= simple_format(tweet.content) %></td>
+        <td class="description"><%= link_to simple_format(tweet.content), tweet_path(tweet.id) %></td>
       </tr>
       <tr>
         <td>
