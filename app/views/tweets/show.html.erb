@@ -33,6 +33,51 @@
     </table>
   </div>
 
+  <div class="goal_search_1">
+    <div class="new_form">
+      <%= form_with( model: @comment, local: true ) do |f| %>
+        <%= f.text_area :content, :placeholder => "コメントを入力", :class => 'text_area' %> <br>
+        <%= f.hidden_field :tweet_id, :value => @tweet.id %> <br>
+        <%= f.submit "登録する" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="user_tweet">
+    <div class="user_memo">
+      <p class="text-center p_condition">コメント一覧</p>
+    </div>
+    <table>
+      <% @comments.each do |comment| %>
+      <tr>
+        <td>
+          <a>
+            <%= link_to comment.user.profile.user_name, user_path(comment.user.id) %>
+          </a>
+          <a>
+            <%= link_to "@" + comment.user.user_account_name, user_path(comment.user.id) %>
+          </a>
+          <a>
+            <% if current_user == comment.user%>
+              <%= link_to '削除', comment_path(comment.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %>
+            <% end %>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="description"><%= simple_format(comment.content) %></td>
+      </tr>
+      <tr class= "goal_bottom">
+        <td>
+          <a>
+            <%= comment.created_at.strftime('%Y年%m月%d日 %H:%M')%>
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+
 </div>
 
 <div class="col-md-3" id="right_div">

@@ -32,6 +32,18 @@ class TweetsController < ApplicationController
 
   def show
     @tweet = Tweet.find(params[:id])
+    @comment = Comment.new
+    @comments = @tweet.comments.order(created_at: "desc")
+  end
+
+  def destroy
+    @tweet = Tweet.find(params[:id])
+    if current_user == @tweet.goal.user
+      @tweet.destroy
+      redirect_to goal_path(@tweet.goal.id), notice: "つぶやきを削除しました"
+    else
+      redirect_to goal_path(@tweet.goal.id), notice: "他のユーザーのつぶやきは削除できません"
+    end
   end
 
 

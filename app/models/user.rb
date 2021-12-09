@@ -14,4 +14,5 @@ class User < ApplicationRecord
   has_many :goals, dependent: :destroy
   has_one :profile, dependent: :destroy
   has_many :tweets, through: :goals
+  has_many :comments, dependent: :destroy
 end
