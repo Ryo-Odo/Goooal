@@ -19,13 +19,41 @@ html {
   margin: 0px;
   padding: 0px;
   overflow-y: scroll;
+  min-height: 100vh;
 }
+
+body {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+main {
+  margin-bottom: 30px;
+}
+
 
 header {
   width: 100%;
   background-color: #ec7700;
   height: 40px;
   margin: 0;
+}
+
+.main_div {
+  min-height: calc(100vh - 100px);
+  padding-bottom: 30px;
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  background-color: #ec7700;
+  height: 40px;
+  margin: 0;
+  bottom: 0;
 }
 
 .infomation {

@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.new(params.require(:comment).permit(:tweet_id, :content))
-    binding.irb
     if @comment.save
       redirect_to tweet_path(params[:comment][:tweet_id]), notice: "コメントを投稿しました"
     else
