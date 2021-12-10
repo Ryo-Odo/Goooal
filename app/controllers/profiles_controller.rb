@@ -8,7 +8,6 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    binding.irb
     @profile = Profile.find(params[:id])
     if @profile.update(profiles_params)
       redirect_to user_path(Profile.find(params[:id]).user.id), notice: "プロフィールを編集しました"

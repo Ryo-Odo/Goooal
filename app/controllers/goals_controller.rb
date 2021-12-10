@@ -15,7 +15,6 @@ class GoalsController < ApplicationController
   end
 
   def create
-    binding.irb
     @goal = current_user.goals.new(goals_params)
     goal_tag_list = params[:goal][:goal_tag_name].gsub(/　/," ").strip.split(nil)
 
@@ -28,9 +27,9 @@ class GoalsController < ApplicationController
           @goal.goal_tags.create(goal_tag_name: goal_tag_name) #まだなかったらタグと中間テーブルのレコードを作る
         end
       end
-      redirect_to goals_path, notice: "登録しました！"
+      redirect_to root_path, notice: "目標を投稿しました！"
     else
-      render :new, notice: "登録に失敗しました"
+      render :new, notice: "目標を投稿に失敗しました"
     end
   end
 

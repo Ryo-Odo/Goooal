@@ -27,6 +27,8 @@
             ユーザー名・アカウント名: <%= params[:q][:profile_user_name_or_user_account_name_cont] %>
           <% elsif params[:commit] == "自己紹介文を検索"%>
             自己紹介文: <%= params[:q][:profile_introduction_cont] %>
+          <% elsif params[:commit].include?("さんのフォロ")%>
+            <%= params[:commit]%>
           <% end %>
         <% else %>
           なし

@@ -6,20 +6,26 @@
         <td>
           <a><%= @user.profile.user_name %></a>
           <a><%= "@" + @user.user_account_name %></a>
-
-          <div id="follow_form_<%= @user.id %>">
-            <% unless current_user.following?(@user) %>
-              <%= form_with(model: current_user.active_relationships.build(followed_id: @user.id)) do |f| %>
-                <%= f.hidden_field :followed_id %>
-                <%= f.submit "フォローする" %>
-              <% end %>
-            <% else %>
-              <%= form_with(model: current_user.active_relationships.find_by(followed_id: @user.id), method: :delete ) do |f| %>
-                <%= f.submit "フォローを解除する" %>
+          <a>
+            <% unless current_user == @user%>
+              <% unless current_user.following?(@user) %>
+                <%= form_with(model: current_user.active_relationships.build(followed_id: @user.id)) do |f| %>
+                  <%= f.hidden_field :followed_id %>
+                  <%= f.submit "フォローする" %>
+                <% end %>
+              <% else %>
+                <%= form_with(model: current_user.active_relationships.find_by(followed_id: @user.id), method: :delete ) do |f| %>
+                  <%= f.submit "フォローを解除する" %>
+                <% end %>
               <% end %>
             <% end %>
-          </div>
-
+          <a>
+        </td>
+      </tr>
+      <tr>
+        <td class="">
+          <a><%= link_to @follow_count, users_path(:follow_search=>{:user_id=>@user.id}, :commit=>@user.profile.user_name + "さんのフォロー") %>フォロー中　</a>
+          <a><%= link_to @follower_count, users_path(:follower_search=>{:user_id=>@user.id}, :commit=>@user.profile.user_name + "さんのフォロワー") %>フォロワー</a>
         </td>
       </tr>
       <tr>
