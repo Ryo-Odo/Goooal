@@ -1,9 +1,22 @@
 class HomesController < ApplicationController
   def index
-    @tweets = Tweet.order(created_at: "desc")
+
+    if params[:tweets].present?
+      @tweets = []
+      current_user.following.each do |user|
+        user.tweets.each do |tweet|
+          @tweets << tweet
+        end
+      end
+      @tweets.sort_by! { |tweet| tweet[:created_at] }
+      @tweets = @tweets.reverse
+    else
+      @tweets = Tweet.order(created_at: "desc")
+    end
+
     @tweet = Tweet.new
-    @users = User.all
-    @goals = Goal.all
+    @users = User.all.order(created_at: "desc")
+    @goals = Goal.all.order(created_at: "desc")
 
     if current_user.goals.count == 0
       @goal_titles = [["まだゴールを投稿していません、サイドバーからゴールを投稿しよう！", "no_goal"]]

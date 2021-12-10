@@ -12,8 +12,16 @@
 
   <div class="goal_index">
 
-    <div class="condition">
-      <p class="text-center p_condition">ツイート一覧：すべてのユーザー</p>
+    <div class="text-center condition">
+      <p><%= button_to 'すべてのユーザー', root_path, { method: :get}%></p>
+      <p><%= button_to 'フォロー中のみ', root_path, { method: :get, params: {tweets: 'follow_user'}}%></p>
+      <p class="p_condition">
+        <% if params[:tweets].present? %>
+          ツイート一覧：フォロー中のみ
+        <% else%>
+          ツイート一覧：すべてのユーザー
+        <% end %>
+      </p>
     </div>
 
     <table>
