@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   resources :tweets
   resources :comments
   resources :relationships, only: [:create, :destroy]
+  resources :helps, only: [:index]
 
 end

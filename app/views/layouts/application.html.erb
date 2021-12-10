@@ -70,7 +70,7 @@
       </p>
     </div>
 
-    <% unless controller_name == "registrations" || controller_name == "sessions"%>
+    <% unless controller_name == "registrations" || controller_name == "sessions" || controller_name == "helps"%>
     <main class="container" id="content">
       <div class="row">
 
@@ -105,6 +105,11 @@
               <li class="left_item">
                 <%= link_to users_path, :class => 'left_link' do%>
                   <p>ユーザーを検索</p>
+                <% end %>
+              </li>
+              <li class="left_item">
+                <%= link_to helps_path, :class => 'left_link' do%>
+                  <p>Goooalとは？</p>
                 <% end %>
               </li>
             </ul>
