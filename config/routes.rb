@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   resources :profiles
   resources :tweets
   resources :comments
+  resources :relationships, only: [:create, :destroy]
 
 end
