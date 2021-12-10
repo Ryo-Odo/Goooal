@@ -11,7 +11,6 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    binding.irb
     if current_user == @comment.user
       @comment.destroy
       redirect_to tweet_path(@comment.tweet.id), notice: "コメントを削除しました"

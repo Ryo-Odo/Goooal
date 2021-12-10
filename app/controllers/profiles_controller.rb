@@ -12,7 +12,8 @@ class ProfilesController < ApplicationController
     if @profile.update(profiles_params)
       redirect_to user_path(Profile.find(params[:id]).user.id), notice: "プロフィールを編集しました"
     else
-      render :edit
+      flash.now[:alert] = "更新に失敗しました。ユーザー名は１５文字、自己紹介は２５５文字が上限です。"
+      render :action => :edit
     end
   end
 

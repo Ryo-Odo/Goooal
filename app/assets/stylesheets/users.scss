@@ -26,7 +26,9 @@
 .user_tweet {
   max-width: 600px;
   margin: 0 auto;
-  border: solid 1px;
+  border-top: solid 1px;
+  border-left: solid 1px;
+  border-right: solid 1px;
   font-size: 1.4rem;
 }
 
@@ -46,10 +48,43 @@
 
 .table_goal_title {
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
+  color: #F4F5F7;
 }
 
 .tr_goal_title {
   border-top: solid 1px;
   padding: 20px;
+}
+
+.top_user_name {
+  color: #F4F5F7;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.top_account_name {
+  color: #F4F5F7;
+  font-size: 1.4rem;
+}
+
+.user_follow {
+  color: #F4F5F7;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.profile_edit_link {
+  color: #F4F5F7;
+  font-size: 1.4rem;
+}
+
+.account_delete_link {
+  color: red;
+  font-size: 1.4rem;
+}
+
+.delete_link {
+  color: red;
+  font-size: 1.4rem;
 }

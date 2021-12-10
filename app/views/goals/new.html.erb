@@ -1,4 +1,7 @@
 <div class="col-md-6" id="main_div">
+  <% p "-----"%>
+  <% p params%>
+  <% p "-----"%>
   <div class="goal_create">
 
     <% if @goal.errors.any? %>
@@ -14,10 +17,10 @@
 
     <div class="new_form">
       <%= form_with( model: @goal, local: true ) do |f| %>
-        <%= f.text_field :goal_title, :placeholder => "ゴールタイトルを入力", :class => 'text_field' %> <br>
-        <%= f.text_area :description, :placeholder => "詳細を入力", :class => 'text_area' %> <br>
-        <%= f.text_field :goal_tag_name, :placeholder => "タグを入力", :class => 'text_field' %> <br>
-        <%= f.submit "登録する" %>
+        <%= f.text_field :goal_title, :placeholder => "自分の目標を入力しよう！", :class => 'text_field' %> <br>
+        <%= f.text_area :description, :placeholder => "目標の詳細を入力しよう！", :class => 'text_area' %> <br>
+        <%= f.text_field :goal_tag_name, :placeholder => "タグを入力しよう！　スペースを開けて５個までタグが付けられるよ！", :class => 'text_field' %> <br>
+        <%= f.submit "投稿する" %>
       <% end %>
     </div>
 

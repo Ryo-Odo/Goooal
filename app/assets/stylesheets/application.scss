@@ -37,20 +37,38 @@ main {
 
 header {
   width: 100%;
-  background-color: #ec7700;
+  background-color: #7D4242;
   height: 40px;
   margin: 0;
 }
 
+.header_table {
+  max-width: 20%;
+  margin-left: 30px;
+
+}
+
+.header_link {
+  font-size: 1.4rem;
+  color: #F4F5F7;
+}
+
+.header_logo_link {
+  font-size: 2.6rem;
+  color: #F4F5F7;
+}
+
 .main_div {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 40px);
   padding-bottom: 30px;
+  background-color: #20323D;
+  color: #F4F5F7;
 }
 
 footer {
   position: absolute;
   width: 100%;
-  background-color: #ec7700;
+  background-color: #7D4242;
   height: 40px;
   margin: 0;
   bottom: 0;
@@ -63,12 +81,13 @@ footer {
 
 .alert, .infomation {
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   margin: 0 auto;
 }
 
 .logo {
-  font-size:2rem;
+  font-size: 2.6rem;
+  color: #F4F5F7;
 }
 
 #content {
@@ -97,3 +116,20 @@ footer {
   border: solid 1px;
   font-size: 1.4rem;
 }
+
+.left_list {
+  text-align: center;
+  font-size: 2rem;
+  list-style: none;
+  margin: 0 auto;
+  padding: 10px 0px;
+}
+
+.left_item{
+  padding: 5px 0px;
+ }
+
+ .left_link {
+   color: #F4F5F7;
+   font-weight: bold;
+ }

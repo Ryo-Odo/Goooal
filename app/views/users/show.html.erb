@@ -4,8 +4,8 @@
     <table class="user_table">
       <tr>
         <td>
-          <a><%= @user.profile.user_name %></a>
-          <a><%= "@" + @user.user_account_name %></a>
+          <a class="top_user_name"><%= @user.profile.user_name %></a>
+          <a class="top_account_name"><%= "@" + @user.user_account_name %></a>
           <a>
             <% unless current_user == @user%>
               <% unless current_user.following?(@user) %>
@@ -24,8 +24,8 @@
       </tr>
       <tr>
         <td class="">
-          <a><%= link_to @follow_count, users_path(:follow_search=>{:user_id=>@user.id}, :commit=>@user.profile.user_name + "さんのフォロー") %>フォロー中　</a>
-          <a><%= link_to @follower_count, users_path(:follower_search=>{:user_id=>@user.id}, :commit=>@user.profile.user_name + "さんのフォロワー") %>フォロワー</a>
+          <a><%= link_to @follow_count, users_path(:follow_search=>{:user_id=>@user.id}, :commit=>@user.profile.user_name + "さんのフォロー"), :class => 'user_follow' %> フォロー中　</a>
+          <a><%= link_to @follower_count, users_path(:follower_search=>{:user_id=>@user.id}, :commit=>@user.profile.user_name + "さんのフォロワー"), :class => 'user_follow' %> フォロワー</a>
         </td>
       </tr>
       <tr>
@@ -34,8 +34,8 @@
       <tr>
         <td>
           <% if current_user == @user%>
-            <a><%= link_to 'プロフィールを編集', edit_profile_path(@user.profile.id, :user_id=>@user)%></a>
-            <a><%= link_to 'アカウント情報を編集', edit_user_registration_path %></a>
+            <a><%= link_to 'プロフィールを編集', edit_profile_path(@user.profile.id, :user_id=>@user), :class => 'profile_edit_link'%></a>
+            <a><%= link_to 'アカウントを削除する', edit_user_registration_path, :class => 'account_delete_link' %></a>
           <% end %>
         </td>
       </tr>
@@ -49,34 +49,46 @@
     <table>
       <% @tweets.each do |tweet| %>
       <tr>
-        <td>
+        <td class="home_td">
           <a>
-            <%= link_to tweet.goal.user.profile.user_name, user_path(@user.id) %>
+            <%= link_to tweet.goal.user.profile.user_name, user_path(@user.id), :class => 'tweet_user_name' %>
           </a>
           <a>
-            <%= link_to "@" + tweet.goal.user.user_account_name, user_path(@user.id) %>
+            <%= link_to "@" + tweet.goal.user.user_account_name, user_path(@user.id), :class => 'tweet_account_name' %>
           </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a><%= link_to tweet.goal.goal_title, goal_path(tweet.goal.id) %></a>
-        </td>
-      </tr>
-      <tr>
-        <td class="description"><%= simple_format(tweet.content) %></td>
-      </tr>
-      <tr class= "">
-        <td>
-          <a>タグ:
-            <% tweet.tweet_tags.each do |tweet_tag|%>
-              <%= link_to tweet_tag.tweet_tag_name, tweets_path(:q=>{:goal_tags_goal_tag_name_eq=>tweet_tag.tweet_tag_name}, :commit=>"タグで検索") %>
+          <a>
+            <% if current_user == tweet.goal.user%>
+              <%= link_to '削除', tweet_path(tweet.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, :class => 'delete_link' %>
             <% end %>
           </a>
         </td>
       </tr>
+      <tr>
+        <td class="home_td">
+          <a><%= link_to "目標: " + tweet.goal.goal_title, goal_path(tweet.goal.id), :class => 'goal_title' %></a>
+        </td>
+      </tr>
+      <tr>
+        <td class="home_td"><%= link_to simple_format(tweet.content), tweet_path(tweet.id), :class => 'tweet_content' %></td>
+      </tr>
+      <tr class= "">
+        <td class="home_td">
+          <a>タグ:
+            <% tweet.tweet_tags.each do |tweet_tag|%>
+              <%= link_to tweet_tag.tweet_tag_name, tweets_path(:q=>{:goal_tags_goal_tag_name_eq=>tweet_tag.tweet_tag_name}, :commit=>"タグで検索"), :class => 'tweet_tag' %>
+            <% end %>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="home_td">
+          <a>
+            コメント：<%= tweet.comments.count%>件
+          </a>
+        </td>
+      </tr>
       <tr class= "goal_bottom">
-        <td>
+        <td class="home_td">
           <a>
             <%= tweet.created_at.strftime('%Y年%m月%d日 %H:%M')%>
           </a>
@@ -102,8 +114,8 @@
     <table class="table_goal_title">
       <% @user.goals.each do |goal| %>
       <tr class="tr_goal_title">
-        <td>
-          <a><%= link_to goal.goal_title, goal_path(goal.id) %></a>
+        <td class="home_td">
+          <a><%= link_to goal.goal_title, goal_path(goal.id), :class => 'right_goal_title' %></a>
         </td>
       </tr>
       <% end %>

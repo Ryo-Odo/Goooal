@@ -11,14 +11,25 @@
 
 <body>
   <header>
-    <a href="#" class="logo">Goooal</a>
-    <% if user_signed_in? %>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <%= link_to "@" + current_user.user_account_name, goals_path %>
-    <% else %>
-    <%= link_to "新規登録", new_user_registration_path %>
-    <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
+    <table class="header_table">
+      <tr>
+        <td>
+          <div class="logo"><%= link_to "Goooal", root_path, :class => 'header_logo_link'  %></div>
+        </td>
+
+          <% if user_signed_in? %>
+          <td><%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'header_link'  %></td>
+          <td><%= link_to "@" + current_user.user_account_name, user_path(current_user.id), :class => 'header_link' %></td>
+            <% if current_user.admin == true%>
+              <td><%= link_to "管理画面", rails_admin_path, :class => 'header_link'  %></td>
+            <% end %>
+          <% else %>
+          <td><%= link_to "新規登録", new_user_registration_path, :class => 'header_link'  %></td>
+          <td><%= link_to "ログイン", new_user_session_path, :class => 'header_link'  %></td>
+          <% end %>
+
+      </tr>
+    </table>
   </header>
 
   <div class="main_div">
@@ -31,12 +42,30 @@
       <% end %>
 
       <p class="infomation">
-        <% if controller_name == "goals" && action_name == "index"%>
-        ゴール検索
+        <% if controller_name == "homes" && action_name == "index"%>
+          HOME
+        <% elsif controller_name == "users" && action_name == "show"%>
+          <% if params[:id].to_i == current_user.id%>
+            マイページ
+          <% else %>
+            ユーザー詳細
+          <% end %>
+        <% elsif controller_name == "goals" && action_name == "index"%>
+          目標検索
         <% elsif controller_name == "goals" && action_name == "show"%>
-        ゴール詳細
+          目標詳細
         <% elsif controller_name == "goals" && action_name == "new"%>
-        ゴール新規作成
+          目標投稿
+        <% elsif controller_name == "tweets" && action_name == "index"%>
+          つぶやき検索
+        <% elsif controller_name == "users" && action_name == "index"%>
+          ユーザー検索
+        <% elsif controller_name == "profiles" && action_name == "edit"%>
+          プロフィール編集
+        <% elsif controller_name == "tweets" && action_name == "show"%>
+          つぶやき詳細
+        <% elsif controller_name == "registrations" && action_name == "edit"%>
+          <%= "@" + current_user.user_account_name%>
         <% end %>
       </p>
     </div>
@@ -47,13 +76,37 @@
 
         <div class="col-md-3" id="left_div">
           <nav class="left_side">
-            <ul class="list-group">
-              <li class="list-group-item"><%= link_to 'HOME', root_path%></li>
-              <li class="list-group-item"><%= link_to 'マイページ', user_path(current_user.id)%></li>
-              <li class="list-group-item"><%= link_to '目標を投稿', new_goal_path%></li>
-              <li class="list-group-item"><%= link_to '目標を検索', goals_path%></li>
-              <li class="list-group-item"><%= link_to 'つぶやきを検索', tweets_path%></li>
-              <li class="list-group-item"><%= link_to 'ユーザーを検索', users_path%></li>
+            <ul class="left_list">
+              <li class="left_item">
+                <%= link_to root_path, :class => 'left_link' do%>
+                  <p>HOME</p>
+                <% end %>
+              </li>
+              <li class="left_item">
+                <%= link_to user_path(current_user.id), :class => 'left_link' do%>
+                  <p>マイページ</p>
+                <% end %>
+              </li>
+              <li class="left_item">
+                <%= link_to new_goal_path, :class => 'left_link' do%>
+                  <p>目標を投稿</p>
+                <% end %>
+              </li>
+              <li class="left_item">
+                <%= link_to goals_path, :class => 'left_link' do%>
+                  <p>目標を検索</p>
+                <% end %>
+              </li>
+              <li class="left_item">
+                <%= link_to tweets_path, :class => 'left_link' do%>
+                  <p>つぶやきを検索</p>
+                <% end %>
+              </li>
+              <li class="left_item">
+                <%= link_to users_path, :class => 'left_link' do%>
+                  <p>ユーザーを検索</p>
+                <% end %>
+              </li>
             </ul>
           </nav>
         </div>

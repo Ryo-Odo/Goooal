@@ -2,7 +2,7 @@
   <div class="goal_search_1">
     <div class="search">
       <%= search_form_for @search do |f| %>
-        <%= f.search_field :profile_user_name_or_user_account_name_cont, placeholder: "キーワードを入力", :class => 'text_field'  %><br>
+        <%= f.search_field :profile_user_name_or_user_account_name_cont, placeholder: "探したいキーワードを入力しよう！", :class => 'text_field'  %><br>
         <%= f.submit "ユーザー名・アカウント名を検索" %>
       <% end %>
     </div>
@@ -11,7 +11,7 @@
   <div class="goal_search_2">
     <div class="search">
       <%= search_form_for @search do |f| %>
-        <%= f.search_field :profile_introduction_cont, placeholder: "キーワードを入力", :class => 'text_field'  %><br>
+        <%= f.search_field :profile_introduction_cont, placeholder: "探したいキーワードを入力しよう！", :class => 'text_field'  %><br>
         <%= f.submit "自己紹介文を検索" %>
       <% end %>
     </div>
@@ -39,17 +39,17 @@
     <table>
       <% @users.each do |user| %>
       <tr>
-        <td>
+        <td class="home_td">
           <a>
-            <%= link_to user.profile.user_name, user_path(user.id) %>
+            <%= link_to user.profile.user_name, user_path(user.id), :class => 'tweet_user_name' %>
           </a>
           <a>
-            <%= link_to "@" + user.user_account_name, user_path(user.id) %>
+            <%= link_to "@" + user.user_account_name, user_path(user.id), :class => 'tweet_account_name' %>
           </a>
         </td>
       </tr>
       <tr class= "goal_bottom">
-        <td class="description"><%= user.profile.introduction %></td>
+        <td class="home_td"><%= link_to simple_format(user.profile.introduction), user_path(user.id), :class => 'tweet_content' %></td>
       </tr>
       <% end %>
     </table>

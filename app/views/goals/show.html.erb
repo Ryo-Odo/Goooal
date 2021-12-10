@@ -3,29 +3,29 @@
   <div class="goal_detail">
     <table>
       <tr>
-        <td>
-          <a><%= link_to @goal.user.profile.user_name, user_path(@goal.user.id) %></a>
-          <a><%= link_to "@" + @goal.user.user_account_name, user_path(@goal.user.id) %></a>
+        <td class="home_td">
+          <a><%= link_to @goal.user.profile.user_name, user_path(@goal.user.id), :class => 'tweet_user_name' %></a>
+          <a><%= link_to "@" + @goal.user.user_account_name, user_path(@goal.user.id), :class => 'tweet_account_name' %></a>
           <a>
             <% if current_user == @goal.user%>
-              <%= link_to '削除', goal_path(@goal.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %>
+              <%= link_to '削除', goal_path(@goal.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, :class => 'delete_link' %>
             <% end %>
           </a>
         </td>
       </tr>
       <tr>
-        <td>
-          <a><%= link_to @goal.goal_title, goal_path(@goal.id) %></a>
+        <td class="home_td">
+          <a><%= link_to "目標: " + @goal.goal_title, goal_path(@goal.id), :class => 'goal_title' %></a>
         </td>
       </tr>
       <tr>
-        <td class="description"><%= simple_format(@goal.description) %></td>
+        <td class="home_td"><%= link_to simple_format(@goal.description), goal_path(@goal.id), :class => 'tweet_content' %></td>
       </tr>
       <tr class= "goal_bottom">
-        <td>
+        <td class="home_td">
           <a>タグ:
             <% @goal.goal_tags.each do |goal_tag|%>
-              <%= link_to goal_tag.goal_tag_name, goals_path(:q=>{:goal_tags_goal_tag_name_eq=>goal_tag.goal_tag_name}, :commit=>"タグで検索") %>
+              <%= link_to goal_tag.goal_tag_name, goals_path(:q=>{:goal_tags_goal_tag_name_eq=>goal_tag.goal_tag_name}, :commit=>"タグで検索"), :class => 'tweet_tag' %>
             <% end %>
           </a>
         </td>
@@ -40,34 +40,46 @@
     <table>
       <% @tweets.each do |tweet| %>
       <tr>
-        <td>
+        <td class="home_td">
           <a>
-            <%= link_to tweet.goal.user.profile.user_name, user_path(@goal.user.id) %>
+            <%= link_to tweet.goal.user.profile.user_name, user_path(@goal.user.id), :class => 'tweet_user_name' %>
           </a>
           <a>
-            <%= link_to "@" + tweet.goal.user.user_account_name, user_path(@goal.user.id) %>
+            <%= link_to "@" + tweet.goal.user.user_account_name, user_path(@goal.user.id), :class => 'tweet_account_name' %>
           </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a><%= link_to tweet.goal.goal_title, goal_path(tweet.goal.id) %></a>
-        </td>
-      </tr>
-      <tr>
-        <td class="description"><%= simple_format(tweet.content) %></td>
-      </tr>
-      <tr class= "">
-        <td>
-          <a>タグ:
-            <% tweet.tweet_tags.each do |tweet_tag|%>
-              <%= link_to tweet_tag.tweet_tag_name, tweets_path(:q=>{:goal_tags_goal_tag_name_eq=>tweet_tag.tweet_tag_name}, :commit=>"タグで検索") %>
+          <a>
+            <% if current_user == tweet.goal.user%>
+              <%= link_to '削除', tweet_path(tweet.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, :class => 'delete_link' %>
             <% end %>
           </a>
         </td>
       </tr>
+      <tr>
+        <td class="home_td">
+          <a><%= link_to "目標: " + tweet.goal.goal_title, goal_path(tweet.goal.id), :class => 'goal_title' %></a>
+        </td>
+      </tr>
+      <tr>
+        <td class="home_td"><%= link_to simple_format(tweet.content), tweet_path(tweet.id), :class => 'tweet_content' %></td>
+      </tr>
+      <tr class= "">
+        <td class="home_td">
+          <a>タグ:
+            <% tweet.tweet_tags.each do |tweet_tag|%>
+              <%= link_to tweet_tag.tweet_tag_name, tweets_path(:q=>{:tweet_tags_tweet_tag_name_eq=>tweet_tag.tweet_tag_name}, :commit=>"タグで検索"), :class => 'tweet_tag' %>
+            <% end %>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="home_td">
+          <a>
+            コメント：<%= tweet.comments.count%>件
+          </a>
+        </td>
+      </tr>
       <tr class= "goal_bottom">
-        <td>
+        <td class="home_td">
           <a>
             <%= tweet.created_at.strftime('%Y年%m月%d日 %H:%M')%>
           </a>

@@ -19,7 +19,7 @@ class HomesController < ApplicationController
     @goals = Goal.all.order(created_at: "desc")
 
     if current_user.goals.count == 0
-      @goal_titles = [["まだゴールを投稿していません、サイドバーからゴールを投稿しよう！", "no_goal"]]
+      @goal_titles = [["まだ目標がありません！　サイドバーの「目標を投稿」から目標を投稿しよう！", "no_goal"]]
     else
       @goal_titles = Goal.where(user_id: current_user.id).pluck(:goal_title, :id)
     end
