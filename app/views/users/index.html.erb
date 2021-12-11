@@ -1,0 +1,64 @@
+<div class="col-md-6" id="main_div">
+  <div class="goal_search_1">
+    <div class="search">
+      <%= search_form_for @search do |f| %>
+        <%= f.search_field :profile_user_name_or_user_account_name_cont, placeholder: "探したいキーワードを入力しよう！", :class => 'text_field'  %><br>
+        <%= f.submit "ユーザー名・アカウント名を検索" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="goal_search_2">
+    <div class="search">
+      <%= search_form_for @search do |f| %>
+        <%= f.search_field :profile_introduction_cont, placeholder: "探したいキーワードを入力しよう！", :class => 'text_field'  %><br>
+        <%= f.submit "自己紹介文を検索" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="goal_index">
+
+    <div class="condition">
+      <p class="text-center p_condition">検索条件</p>
+      <p class="text-center p_condition">
+        <% if params[:commit].present?%>
+          <% if params[:commit] == "ユーザー名・アカウント名を検索"%>
+            ユーザー名・アカウント名: <%= params[:q][:profile_user_name_or_user_account_name_cont] %>
+          <% elsif params[:commit] == "自己紹介文を検索"%>
+            自己紹介文: <%= params[:q][:profile_introduction_cont] %>
+          <% elsif params[:commit].include?("さんのフォロ")%>
+            <%= params[:commit]%>
+          <% end %>
+        <% else %>
+          なし
+        <% end %>
+      </p>
+    </div>
+
+    <table>
+      <% @users.each do |user| %>
+      <tr>
+        <td class="home_td">
+          <a>
+            <%= link_to user.profile.user_name, user_path(user.id), :class => 'tweet_user_name' %>
+          </a>
+          <a>
+            <%= link_to "@" + user.user_account_name, user_path(user.id), :class => 'tweet_account_name' %>
+          </a>
+        </td>
+      </tr>
+      <tr class= "goal_bottom">
+        <td class="home_td"><%= link_to simple_format(user.profile.introduction), user_path(user.id), :class => 'tweet_content' %></td>
+      </tr>
+      <% end %>
+    </table>
+
+  </div>
+
+</div>
+
+<div class="col-md-3" id="right_div">
+  <div class="right_side">
+  </div>
+</div>

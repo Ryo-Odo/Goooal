@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      profile: プロフィール
+      goal: 目標
+      tweet: つぶやき
+      comment: コメント
+      goal_tag: 目標のタグ
+      tweet_tag: つぶやきのタグ
+    attributes:
+      user:
+        user_account_name: アカウント名
+        email: メールアドレス
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: パスワード再入力
+        remember_me: ログインを記憶
+        admin: 管理者権限
+      goal:
+        goal_title: 目標のタイトル
+        description: 目標の詳細
+      comment:
+        content: コメントの内容
+      goal_tag:
+        goal_tag_name: 目標のタグ名
+      profile:
+        user_name: ユーザー名
+        introduction: 自己紹介
+      tweet_tag:
+        tweet_tag_name: つぶやきのタグ名
+      tweet:
+        content: つぶやきの詳細

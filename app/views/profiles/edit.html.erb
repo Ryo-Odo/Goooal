@@ -1,0 +1,32 @@
+<div class="col-md-6" id="main_div">
+
+  <% if @profile.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="error_h2"><%= @profile.errors.count %>件のエラーがあります。</h2>
+    <ul class="error_ul">
+      <% @profile.errors.full_messages.each do |msg| %>
+      <li class="error_li"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="profile_edit">
+
+    <div class="profile_form">
+      <%= form_with( model: @profile, local: true ) do |f| %>
+        <%= f.label :user_name, "ユーザー名" %><br>
+        <%= f.text_field :user_name, :placeholder => "15文字以内で入力", :class => 'profile_text_field'%> <br>
+        <%= f.label :introduction, "自己紹介" %><br>
+        <%= f.text_area :introduction, :placeholder => "255文字以内で入力", :class => 'profile_text_area' %> <br>
+        <%= f.submit "登録する" %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<div class="col-md-3" id="right_div">
+  <div class="right_side">
+  </div>
+</div>

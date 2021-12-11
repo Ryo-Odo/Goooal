@@ -1,0 +1,77 @@
+<div class="col-md-6" id="main_div">
+  <div class="goal_search_1">
+    <div class="search">
+      <%= search_form_for @search do |f| %>
+        <%= f.search_field :goal_title_or_description_cont, placeholder: "探したいキーワードを入力しよう！", :class => 'text_field'  %><br>
+        <%= f.submit "キーワードで検索" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="goal_search_2">
+    <div class="search">
+      <%= search_form_for @search do |f| %>
+        <%= f.search_field :goal_tags_goal_tag_name_eq, placeholder: "探したいタグを入力しよう！", :class => 'text_field'  %><br>
+        <%= f.submit "タグで検索" %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="goal_index">
+
+    <div class="condition">
+      <p class="text-center p_condition">検索条件</p>
+      <p class="text-center p_condition">
+        <% if params[:commit].present?%>
+          <% if params[:commit] == "キーワードで検索"%>
+            キーワード: <%= params[:q][:goal_title_or_description_cont] %>
+          <% elsif params[:commit] == "タグで検索"%>
+            タグ名: <%= params[:q][:goal_tags_goal_tag_name_eq] %>
+          <% end %>
+        <% else %>
+          なし
+        <% end %>
+      </p>
+    </div>
+
+    <table>
+      <% @goals.each do |goal| %>
+      <tr>
+        <td class="home_td">
+          <a>
+            <%= link_to goal.user.profile.user_name, user_path(goal.user.id), :class => 'tweet_user_name' %>
+          </a>
+          <a>
+            <%= link_to "@" + goal.user.user_account_name, user_path(goal.user.id), :class => 'tweet_account_name' %>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="home_td">
+          <a><%= link_to goal.goal_title, goal_path(goal.id), :class => 'goal_title' %></a>
+        </td>
+      </tr>
+      <tr>
+        <td class="home_td"><%= link_to simple_format(goal.description), goal_path(goal.id), :class => 'tweet_content' %></td>
+      </tr>
+      <tr class= "goal_bottom">
+        <td class="home_td">
+          <a>タグ:
+            <% goal.goal_tags.each do |goal_tag|%>
+              <%= link_to goal_tag.goal_tag_name, goals_path(:q=>{:goal_tags_goal_tag_name_eq=>goal_tag.goal_tag_name}, :commit=>"タグで検索"), :class => 'tweet_tag' %>
+            <% end %>
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+
+  </div>
+
+</div>
+
+<div class="col-md-3" id="right_div">
+  <div class="right_side">
+  </div>
+</div>

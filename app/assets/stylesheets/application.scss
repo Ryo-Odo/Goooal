@@ -1,0 +1,179 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+html {
+  font-size:62.5%;
+  margin: 0px;
+  padding: 0px;
+  overflow-y: scroll;
+  min-height: 100vh;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+main {
+  margin-bottom: 30px;
+}
+
+
+header {
+  width: 100%;
+  background-color: #7D4242;
+  height: 40px;
+  margin: 0;
+}
+
+.header_table {
+  width: 30%;
+  margin-left: 30px;
+
+}
+
+.header_link {
+  font-size: 1.4rem;
+  color: #F4F5F7;
+}
+
+.header_logo_link {
+  font-size: 2.6rem;
+  color: #F4F5F7;
+}
+
+.main_div {
+  min-height: calc(100vh - 40px);
+  padding-bottom: 30px;
+  background-color: #20323D;
+  color: #F4F5F7;
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  background-color: #7D4242;
+  height: 40px;
+  margin: 0;
+  bottom: 0;
+}
+
+.infomation {
+  padding: 0;
+  min-height: 30px;
+}
+
+.alert, .infomation {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 0 auto;
+}
+
+.notice_alert {
+  padding: 0;
+  min-height: 30px;
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 0 auto;
+  color: #7D4242;
+}
+
+.logo {
+  font-size: 2.6rem;
+  color: #F4F5F7;
+}
+
+#content {
+  max-width: 1320px;
+}
+
+.left_side{
+  max-width: 330px;
+  border: solid 1px;
+}
+
+#main_div, #left_div, #right_div {
+  padding: 0;
+}
+
+.goal_search_1 {
+  max-width: 600px;
+  margin: 0 auto 15px auto;
+  border: solid 1px;
+  font-size: 1.4rem;
+}
+
+.goal_search_2 {
+  max-width: 600px;
+  margin: 15px auto 0 auto;
+  border: solid 1px;
+  font-size: 1.4rem;
+}
+
+.left_list {
+  text-align: center;
+  font-size: 2rem;
+  list-style: none;
+  margin: 0 auto;
+  padding: 10px 0px;
+}
+
+.left_item{
+  padding: 5px 0px;
+ }
+
+ .left_link {
+   color: #F4F5F7;
+   font-weight: bold;
+ }
+
+ .error_explanation {
+   max-width: 600px;
+   margin: 15px auto 0 auto;
+   text-align: center;
+ }
+
+.error_h2 {
+  font-size: 2rem;
+  color: #7D4242;
+  text-align: center;
+ }
+
+ .error_ul {
+   margin: 0 auto;
+   list-style: none;
+ }
+
+.error_li {
+  font-size: 1.6rem;
+  color: #7D4242;
+  text-align: center;
+}
+
+.gest_div {
+  max-width: 600px;
+  margin: 15px auto 15px auto;
+  text-align: center;
+}
+
+.gest_link {
+  font-size: 1.6rem;
+  color: #F4F5F7;
+  font-weight: bold;
+}
