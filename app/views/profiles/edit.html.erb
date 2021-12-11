@@ -1,4 +1,16 @@
 <div class="col-md-6" id="main_div">
+
+  <% if @profile.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="error_h2"><%= @profile.errors.count %>件のエラーがあります。</h2>
+    <ul class="error_ul">
+      <% @profile.errors.full_messages.each do |msg| %>
+      <li class="error_li"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
   <div class="profile_edit">
 
     <div class="profile_form">

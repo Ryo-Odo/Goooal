@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-  before_action :authenticate_user!#, only: [:new, :create]
+  before_action :authenticate_user!
   before_action :set_property, only: [:show, :destroy]
 
 
@@ -33,7 +33,8 @@ class GoalsController < ApplicationController
         end
         redirect_to root_path, notice: "目標を投稿しました！"
       else
-        render :new, notice: "目標を投稿に失敗しました"
+        flash.now[:alert] = "目標の投稿に失敗しました"
+        render :action => :new
       end
     end
   end

@@ -19,7 +19,10 @@
 
           <% if user_signed_in? %>
           <td><%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'header_link'  %></td>
-          <td><%= link_to "@" + current_user.user_account_name, user_path(current_user.id), :class => 'header_link' %></td>
+          <td>
+            <a><%= link_to current_user.profile.user_name, user_path(current_user.id), :class => 'header_link' %></a>
+            <a><%= link_to "@" + current_user.user_account_name, user_path(current_user.id), :class => 'header_link' %></a>
+          </td>
             <% if current_user.admin == true%>
               <td><%= link_to "管理画面", rails_admin_path, :class => 'header_link'  %></td>
             <% end %>
@@ -34,15 +37,11 @@
 
   <div class="main_div">
     <div class="infomation">
-      <% if notice %>
-      <p class="infomation"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-      <p class="infomation"><%= alert %></p>
-      <% end %>
 
       <p class="infomation">
         <% if controller_name == "homes" && action_name == "index"%>
+          HOME
+        <% elsif controller_name == "tweets" && action_name == "create"%>
           HOME
         <% elsif controller_name == "users" && action_name == "show"%>
           <% if params[:id].to_i == current_user.id%>
@@ -54,20 +53,34 @@
           目標検索
         <% elsif controller_name == "goals" && action_name == "show"%>
           目標詳細
-        <% elsif controller_name == "goals" && action_name == "new"%>
+        <% elsif controller_name == "goals" && action_name == "create"%>
           目標投稿
+        <% elsif controller_name == "goals" && action_name == "new"%>
+        　目標投稿
         <% elsif controller_name == "tweets" && action_name == "index"%>
           つぶやき検索
         <% elsif controller_name == "users" && action_name == "index"%>
           ユーザー検索
         <% elsif controller_name == "profiles" && action_name == "edit"%>
           プロフィール編集
+        <% elsif controller_name == "profiles" && action_name == "update"%>
+        　プロフィール編集
         <% elsif controller_name == "tweets" && action_name == "show"%>
+          つぶやき詳細
+        <% elsif controller_name == "comments" && action_name == "create"%>
           つぶやき詳細
         <% elsif controller_name == "registrations" && action_name == "edit"%>
           <%= "@" + current_user.user_account_name%>
         <% end %>
       </p>
+
+      <% if notice %>
+      <p class="notice_alert"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+      <p class="notice_alert"><%= alert %></p>
+      <% end %>
+
     </div>
 
     <% unless controller_name == "registrations" || controller_name == "sessions" || controller_name == "helps"%>

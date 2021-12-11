@@ -5,11 +5,11 @@ Rails.application.routes.draw do
    }
 
   root 'homes#index'
-  resources :goals
+  resources :goals, only: [:index, :new, :show, :create, :destroy]
   resources :users, only: [:show, :index]
-  resources :profiles
-  resources :tweets
-  resources :comments
+  resources :profiles, only: [:edit, :update]
+  resources :tweets, only: [:index, :show, :create, :destroy]
+  resources :comments, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :helps, only: [:index]
 

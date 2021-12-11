@@ -1,5 +1,16 @@
 <div class="col-md-6" id="main_div">
 
+  <% if @comment.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="error_h2"><%= @comment.errors.count %>件のエラーがあります。</h2>
+    <ul class="error_ul">
+      <% @comment.errors.full_messages.each do |msg| %>
+      <li class="error_li"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
   <div class="goal_detail">
     <table>
       <tr>

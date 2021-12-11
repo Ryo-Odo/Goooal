@@ -1,4 +1,16 @@
 <div class="col-md-6" id="main_div">
+
+  <% if @tweet.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="error_h2"><%= @tweet.errors.count %>件のエラーがあります。</h2>
+    <ul class="error_ul">
+      <% @tweet.errors.full_messages.each do |msg| %>
+      <li class="error_li"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
   <% p "-----"%>
   <% p params%>
   <% p "-----"%>
@@ -20,9 +32,9 @@
       <p><%= button_to 'フォロー中のみ', root_path, { method: :get, params: {tweets: 'follow_user'}}%></p>
       <p class="p_condition">
         <% if params[:tweets].present? %>
-          ツイート一覧：フォロー中のみ
+          つぶやき一覧：フォロー中のみ
         <% else%>
-          ツイート一覧：すべてのユーザー
+          つぶやき一覧：すべてのユーザー
         <% end %>
       </p>
     </div>
@@ -113,7 +125,7 @@
       <tr class="right_tr">
         <td class="home_td">
           <a><%= link_to user.profile.user_name, user_path(user.id), :class => 'right_name' %></a>
-          <a><%= link_to user.user_account_name, user_path(user.id), :class => 'right_account_name' %></a>
+          <a><%= link_to "@" + user.user_account_name, user_path(user.id), :class => 'right_account_name' %></a>
         </td>
       </tr>
       <% end %>
