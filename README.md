@@ -24,7 +24,7 @@
 ## 実行手順
 ```
 $ git clone git@github.com:Ryo-Odo/Goooal.git
-$ cd goooal
+$ cd Goooal
 $ bundle install
 $ rails webpacker:install
 $ rails db:create
