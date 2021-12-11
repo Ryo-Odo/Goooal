@@ -19,7 +19,7 @@
 - フォロー機能
 
 ## カリキュラム外の技術
-- Vue.js(タグの選択や検索時のサジェスト入力に使用を想定)
+- ransack
 
 ## 実行手順
 ```
@@ -29,6 +29,7 @@ $ bundle install
 $ rails webpacker:install
 $ rails db:create
 $ rails db:migrate
+$ rails db:seed
 $ rails s (rails server -b 0.0.0.0)
 ```
 
@@ -37,13 +38,13 @@ https://docs.google.com/spreadsheets/d/1MUHJiozWa66eLxQJp7RyoGq7b6MEhRlGyZ7nO93u
 
 ## ER図
 https://drive.google.com/file/d/16mJ4lZvopg8O3_j6u4JuBeGZEbyuzVNA/view?usp=sharing
-![ER図](https://user-images.githubusercontent.com/89906223/144711382-0d3c6851-e756-4fba-8514-49e1435ead11.png)
+![ER図](https://user-images.githubusercontent.com/89906223/145669486-9d414cdd-461f-4a5b-ad99-f1db0491c57c.png)
 
 ## 画面遷移図
 https://drive.google.com/file/d/1Y0d7Z5AY8q6HWnXkcUq_sAVENIA_SDit/view?usp=sharing
-![画面遷移図](https://user-images.githubusercontent.com/89906223/144708210-557a5b08-db72-498c-9b33-7f50aebcfb43.png)
+![画面遷移図](https://user-images.githubusercontent.com/89906223/145669489-da1e9d3b-95f4-4a38-9762-ed472985094f.png)
 
 
 ## ワイヤーフレーム
 https://drive.google.com/file/d/161i4PLBFFuV9YIeWE-rEF4AFMfdVnTPb/view?usp=sharing
-![ワイヤーフレーム](https://user-images.githubusercontent.com/89906223/144708208-3fb2053b-507a-498e-a0f9-5cf80c01fbbd.png)
+![ワイヤーフレーム](https://user-images.githubusercontent.com/89906223/145669488-28e7f5af-e9e4-4537-9a52-43ba8cc25722.png)
