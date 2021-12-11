@@ -13,7 +13,7 @@
 
       <div class="field login">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autocomplete: "email" %>
+        <%= f.email_field :email, :placeholder => "メールアドレス", autocomplete: "email" %>
       </div>
 
       <div class="field login">
@@ -21,12 +21,12 @@
         <% if @minimum_password_length %>
         <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
+        <%= f.password_field :password, :placeholder => "６桁以上のパスワード", autocomplete: "new-password" %>
       </div>
 
       <div class="field login">
         <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <%= f.password_field :password_confirmation, :placeholder => "再入力", autocomplete: "new-password" %>
       </div>
 
       <div class="actions login">
