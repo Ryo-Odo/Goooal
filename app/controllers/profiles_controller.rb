@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
       render :action => :edit
     end
   end
-
+  
   private
   def profiles_params
     params.require(:profile).permit(:user_name, :introduction)

@@ -28,11 +28,17 @@
 
     <div class="login">
       <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-        <%= link_to "アカウント新規作成", new_registration_path(resource_name) %><br />
+        <%= link_to "アカウント新規作成", new_registration_path(resource_name), :class => 'gest_link' %><br />
       <% end %>
     </div>
 
   </div>
+
+  <div class="gest_div">
+    <p><%= link_to '一般ゲストログイン', homes_guest_sign_in_path, method: :post, :class => 'gest_link' %></p>
+    <p><%= link_to '管理ゲストログイン', homes_admin_guest_sign_in_path, method: :post, :class => 'gest_link' %></p>
+  </div>
+
 
   <div class="top_information">
     <h2 class="top_h2 text-center" >Goooalとは？</h2>
@@ -51,8 +57,6 @@
       <a href="#5" class="top_a">5.フォローしてみよう！</a><br>
       <a href="#6" class="top_a">6.つぶやきにコメントしよう！</a><br>
     </div>
-
-
     <div class="top_content">
       <h4 class="top_h4 text-center", id="1">1.プロフィールを作ろう！</h4>
       <p>
@@ -92,18 +96,7 @@
         つぶやきへのコメントを投稿し、他のユーザーとコミュニケーションを取りましょう。<br>
       </p>
     </div>
-
-
-
-
-
-
-
   </div>
-
-
-
-
 </div>
 
 

@@ -24,4 +24,35 @@ class HomesController < ApplicationController
       @goal_titles = Goal.where(user_id: current_user.id).pluck(:goal_title, :id)
     end
   end
+
+  def guest_sign_in
+    user = User.find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.user_account_name = "general_user"
+    end
+    if User.where(user_account_name: user.user_account_name).present?
+      if Profile.where(user_id: user.id).blank?
+        user_id = User.where(user_account_name: user.user_account_name).ids[0]
+        Profile.create(user_id: user_id, user_name: "一般ゲストユーザー", introduction: "自己紹介してみよう！")
+      end
+    end
+    sign_in user
+    redirect_to root_path, notice: '一般ゲストユーザーとしてログインしました。'
+  end
+
+  def admin_guest_sign_in
+    user = User.find_or_create_by!(email: 'admin_guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.user_account_name = "admin_user"
+      user.admin = true
+    end
+    if User.where(user_account_name: user.user_account_name).present?
+      if Profile.where(user_id: user.id).blank?
+        user_id = User.where(user_account_name: user.user_account_name).ids[0]
+        Profile.create(user_id: user_id, user_name: "管理ゲストユーザー", introduction: "自己紹介してみよう！")
+      end
+    end
+    sign_in user
+    redirect_to root_path, notice: '管理ゲストユーザーとしてログインしました。'
+  end
 end

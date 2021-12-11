@@ -5,6 +5,8 @@ Rails.application.routes.draw do
    }
 
   root 'homes#index'
+  post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
+  post '/homes/admin_guest_sign_in', to: 'homes#admin_guest_sign_in'
   resources :goals, only: [:index, :new, :show, :create, :destroy]
   resources :users, only: [:show, :index]
   resources :profiles, only: [:edit, :update]
