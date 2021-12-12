@@ -7,7 +7,7 @@ FactoryBot.define do
     admin {false}
   end
 
-  factory :user_2 , class: User do
+  factory :second_user , class: User do
     id {2}
     user_account_name { "user_2" }
     email { "user_2@email.com" }
