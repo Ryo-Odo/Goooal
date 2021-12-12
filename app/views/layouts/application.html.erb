@@ -145,6 +145,19 @@
   </div>
 
   <footer>
+    <% if user_signed_in?%>
+      <div class="footer_div">
+        <%= link_to root_path, :class => 'left_link' do%>
+          <p class="footer_p">HOME</p>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="footer_div">
+        <%= link_to new_user_session_path, :class => 'header_link' do%>
+          <p class="footer_p">ログイン</p>
+        <% end %>
+      </div>
+    <% end %>
   </footer>
 </body>
 </html>

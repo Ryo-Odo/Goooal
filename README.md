@@ -26,6 +26,9 @@
 $ git clone git@github.com:Ryo-Odo/Goooal.git
 $ cd Goooal
 $ bundle install
+$ rails webpacker:install
+  Overwrite ...Goooal/config/webpack/environment.js? (enter "h" for help) [Ynaqdhm]
+  「n」を入力してエンター(上書きしない)
 $ rails db:create
 $ rails webpacker:install
   Overwrite ...Goooal/config/webpack/environment.js? (enter "h" for help) [Ynaqdhm]

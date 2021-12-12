@@ -49,7 +49,7 @@
       <%= form_with( model: @comment, local: true ) do |f| %>
         <%= f.text_area :content, :placeholder => "コメントを入力", :class => 'text_area' %> <br>
         <%= f.hidden_field :tweet_id, :value => @tweet.id %> <br>
-        <%= f.submit "登録する" %>
+        <%= f.submit "投稿する" %>
       <% end %>
     </div>
   </div>

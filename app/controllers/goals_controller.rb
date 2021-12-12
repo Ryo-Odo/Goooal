@@ -46,9 +46,9 @@ class GoalsController < ApplicationController
   def destroy
     if current_user == @goal.user
       @goal.destroy
-      redirect_to user_path(@goal.user.id), notice: "ゴールを削除しました"
+      redirect_to user_path(@goal.user.id), notice: "目標を削除しました"
     else
-      redirect_to user_path(@goal.user.id), notice: "他のユーザーのゴールは削除できません"
+      redirect_to user_path(@goal.user.id), notice: "他のユーザーの目標は削除できません"
     end
   end
 
