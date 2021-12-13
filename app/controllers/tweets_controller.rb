@@ -8,7 +8,7 @@ class TweetsController < ApplicationController
 
   def create
     if params[:tweet][:goal_id] == "no_goal"
-      redirect_to root_path, notice: "まずはサイドバーから「ゴールを投稿」しよう！"
+      redirect_to root_path, notice: "まずはサイドバーから「目標を投稿」しよう！"
     elsif params[:tweet][:content].blank?
       redirect_to root_path, notice: "つぶやきを入力してください"
     else
