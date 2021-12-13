@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to tweet_path(params[:comment][:tweet_id]), notice: "コメントを投稿しました"
     else
-      binding.irb
       @tweet = Tweet.find(params[:comment][:tweet_id])
       @comments = @tweet.comments.order(created_at: "desc")
       flash.now[:alert] = "コメントの投稿に失敗しました"
