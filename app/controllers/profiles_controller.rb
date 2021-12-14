@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+
   def edit
     unless current_user.profile.id == params[:id].to_i
       redirect_to user_path(params[:user_id]), notice:"自分以外のプロフィールは編集できません"
@@ -17,7 +18,9 @@ class ProfilesController < ApplicationController
   end
 
   private
+
   def profiles_params
     params.require(:profile).permit(:user_name, :introduction)
   end
+  
 end

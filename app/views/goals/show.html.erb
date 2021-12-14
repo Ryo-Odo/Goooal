@@ -21,7 +21,7 @@
       <tr>
         <td class="home_td"><%= link_to simple_format(@goal.description), goal_path(@goal.id), :class => 'tweet_content' %></td>
       </tr>
-      <tr class= "goal_bottom">
+      <tr>
         <td class="home_td">
           <a>タグ:
             <% @goal.goal_tags.each do |goal_tag|%>
