@@ -31,6 +31,7 @@ gem 'devise-i18n'
 gem 'rails_admin', '~> 2.0'
 gem 'cancancan'
 gem 'ransack'
+gem 'gon'
 
 
 # Reduces boot times through caching; required in config/boot.rb

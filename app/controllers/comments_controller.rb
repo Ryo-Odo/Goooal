@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
       @tweet = Tweet.find(params[:comment][:tweet_id])
       @comments = @tweet.comments.order(created_at: "desc")
       flash.now[:alert] = "コメントの投稿に失敗しました"
+      gon.tweet_id = Tweet.find(params[:comment][:tweet_id]).id
       render "tweets/show"
     end
   end

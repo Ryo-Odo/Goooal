@@ -115,6 +115,11 @@ GEM
     ffi (1.15.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    gon (6.4.0)
+      actionpack (>= 3.0.20)
+      i18n (>= 0.7)
+      multi_json
+      request_store (>= 1.0)
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
@@ -167,6 +172,7 @@ GEM
     mini_mime (1.1.2)
     minitest (5.14.4)
     msgpack (1.4.2)
+    multi_json (1.15.0)
     nested_form (0.3.2)
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-linux)
@@ -233,6 +239,8 @@ GEM
       ffi (~> 1.0)
     regexp_parser (2.2.0)
     remotipart (1.4.4)
+    request_store (1.5.0)
+      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -319,6 +327,7 @@ DEPENDENCIES
   devise-i18n
   factory_bot_rails
   faker
+  gon
   jbuilder (~> 2.7)
   launchy
   letter_opener_web

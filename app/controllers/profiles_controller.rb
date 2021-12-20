@@ -13,6 +13,7 @@ class ProfilesController < ApplicationController
       redirect_to user_path(Profile.find(params[:id]).user.id), notice: "プロフィールを編集しました"
     else
       flash.now[:alert] = "更新に失敗しました。ユーザー名は１文字以上１５文字以内、自己紹介は２５５文字以内で入力してください"
+      gon.profile_id = Profile.find(params[:id]).id
       render :action => :edit
     end
   end
@@ -22,5 +23,5 @@ class ProfilesController < ApplicationController
   def profiles_params
     params.require(:profile).permit(:user_name, :introduction)
   end
-  
+
 end
