@@ -4,7 +4,11 @@
     <table class="user_table">
       <tr>
         <td>
-          <a class=""><%= image_tag @user.profile.image.url %></a>
+          <% if @user.profile.image.url.present?%>
+            <a class=""><%= image_tag @user.profile.image.url %></a>
+          <% else %>
+            <a class=""><%= image_tag src="/assets/default.png", size: "60x60" %></a>
+          <% end %>
           <a class="top_user_name"><%= @user.profile.user_name %></a>
           <a class="top_account_name"><%= "@" + @user.user_account_name %></a>
           <a>
