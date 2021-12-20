@@ -4,6 +4,7 @@
     <table class="user_table">
       <tr>
         <td>
+          <a class=""><%= image_tag @user.profile.image.url %></a>
           <a class="top_user_name"><%= @user.profile.user_name %></a>
           <a class="top_account_name"><%= "@" + @user.user_account_name %></a>
           <a>
