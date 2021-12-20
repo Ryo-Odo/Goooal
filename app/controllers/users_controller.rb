@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
     if params[:follow_search].present?
       @search = User.ransack(params[:q])
@@ -13,7 +14,6 @@ class UsersController < ApplicationController
       @search.sorts = 'created_at desc'
       @users = @search.result(distinct: true)
     end
-
   end
 
   def show

@@ -1,21 +1,19 @@
 class TweetsController < ApplicationController
+
   def index
     @search = Tweet.ransack(params[:q])
     @search.sorts = 'created_at desc'
     @tweets = @search.result(distinct: true)
   end
 
-
   def create
     if params[:tweet][:goal_id] == "no_goal"
-      redirect_to root_path, notice: "まずはサイドバーから「ゴールを投稿」しよう！"
+      redirect_to root_path, notice: "まずはサイドバーから「目標を投稿」しよう！"
     elsif params[:tweet][:content].blank?
       redirect_to root_path, notice: "つぶやきを入力してください"
     else
-
       @tweet = Tweet.new(params.require(:tweet).permit(:goal_id, :content))
       tweet_tag_list = params[:tweet][:tweet_tag_name].gsub(/　/," ").strip.split(nil)
-
       if tweet_tag_list.count > 5
         render_home
         flash.now[:alert] = "タグの数は５個までです"
@@ -37,7 +35,6 @@ class TweetsController < ApplicationController
           render "homes/index"
         end
       end
-
     end
   end
 
@@ -72,14 +69,13 @@ class TweetsController < ApplicationController
     else
       @tweets = Tweet.order(created_at: "desc")
     end
-
     @users = User.all.order(created_at: "desc")
     @goals = Goal.all.order(created_at: "desc")
-
     if current_user.goals.count == 0
       @goal_titles = [["まだ目標がありません！　サイドバーの「目標を投稿」から目標を投稿しよう！", "no_goal"]]
     else
       @goal_titles = Goal.where(user_id: current_user.id).pluck(:goal_title, :id)
     end
   end
+
 end

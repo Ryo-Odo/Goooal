@@ -1,3 +1,9 @@
+<%= include_gon %>
+
+<% if @profile.errors.any? %>
+  <%= javascript_pack_tag 'profiles_render' %>
+<% end %>
+
 <div class="col-md-6" id="main_div">
 
   <% if @profile.errors.any? %>

@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
-  def index
 
+  def index
     if params[:tweets].present?
       @tweets = []
       current_user.following.each do |user|
@@ -55,4 +55,5 @@ class HomesController < ApplicationController
     sign_in user
     redirect_to root_path, notice: '管理ゲストユーザーとしてログインしました。'
   end
+  
 end

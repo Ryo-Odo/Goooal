@@ -1,4 +1,5 @@
 class RelationshipsController < ApplicationController
+
   def create
     @user = User.find(params[:relationship][:followed_id])
     current_user.follow!(@user)
@@ -10,4 +11,5 @@ class RelationshipsController < ApplicationController
     current_user.unfollow!(@user)
     redirect_to user_path(@user.id), notice: "フォローを解除しました"
   end
+  
 end

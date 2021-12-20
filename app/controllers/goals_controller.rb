@@ -2,12 +2,10 @@ class GoalsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_property, only: [:show, :destroy]
 
-
   def index
     @search = Goal.ransack(params[:q])
     @search.sorts = 'created_at desc'
     @goals = @search.result(distinct: true)
-
   end
 
   def new
@@ -17,7 +15,6 @@ class GoalsController < ApplicationController
   def create
     @goal = current_user.goals.new(goals_params)
     goal_tag_list = params[:goal][:goal_tag_name].gsub(/　/," ").strip.split(nil)
-
     if goal_tag_list.count > 5
       flash.now[:alert] = "タグの数は５個までです"
       render :action => :new
@@ -53,7 +50,7 @@ class GoalsController < ApplicationController
   end
 
   private
-
+  
   def set_property
     @goal = Goal.find(params[:id])
   end
@@ -61,7 +58,5 @@ class GoalsController < ApplicationController
   def goals_params
     params.require(:goal).permit(:goal_title, :description)
   end
-
-
 
 end

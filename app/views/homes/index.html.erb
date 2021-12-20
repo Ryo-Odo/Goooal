@@ -1,3 +1,7 @@
+<% if @tweet.errors.any? || alert %>
+  <%= javascript_pack_tag 'homes_render' %>
+<% end %>
+
 <div class="col-md-6" id="main_div">
 
   <% if @tweet.errors.any? %>
@@ -11,9 +15,6 @@
   </div>
   <% end %>
 
-  <% p "-----"%>
-  <% p params%>
-  <% p "-----"%>
   <div class="goal_search_1">
     <div class="new_form">
       <%= form_with( model: @tweet, local: true ) do |f| %>

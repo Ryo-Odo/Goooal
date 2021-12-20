@@ -1,3 +1,9 @@
+<%= include_gon %>
+
+<% if @comment.errors.any? %>
+  <%= javascript_pack_tag 'tweets_render' %>
+<% end %>
+
 <div class="col-md-6" id="main_div">
 
   <% if @comment.errors.any? %>
@@ -26,18 +32,32 @@
       </tr>
       <tr>
         <td class="home_td">
-          <a><%= link_to @tweet.goal.goal_title, goal_path(@tweet.goal.id), :class => 'goal_title' %></a>
+          <a><%= link_to "目標: " + @tweet.goal.goal_title, goal_path(@tweet.goal.id), :class => 'goal_title' %></a>
         </td>
       </tr>
       <tr>
         <td class="home_td"><%= link_to simple_format(@tweet.content), tweet_path(@tweet.id), :class => 'tweet_content' %></td>
       </tr>
-      <tr class= "goal_bottom">
+      <tr class= "">
         <td class="home_td">
           <a>タグ:
             <% @tweet.tweet_tags.each do |tweet_tag|%>
               <%= link_to tweet_tag.tweet_tag_name, tweets_path(:q=>{:tweet_tags_tweet_tag_name_eq=>tweet_tag.tweet_tag_name}, :commit=>"タグで検索"), :class => 'tweet_tag' %>
             <% end %>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="home_td">
+          <a>
+            コメント：<%= @tweet.comments.count%>件
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="home_td">
+          <a>
+            <%= @tweet.created_at.strftime('%Y年%m月%d日 %H:%M')%>
           </a>
         </td>
       </tr>
