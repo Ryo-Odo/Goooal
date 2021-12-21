@@ -13,7 +13,7 @@
           <a><%= link_to "@" + @goal.user.user_account_name, user_path(@goal.user.id), :class => 'tweet_account_name' %></a>
           <a>
             <% if current_user == @goal.user%>
-              <%= link_to '削除', goal_path(@goal.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, :class => 'delete_link' %>
+              <%= link_to '削除', goal_path(@goal.id), method: :delete, data: { confirm: '本当にこの目標を削除していいですか？' }, :class => 'delete_link' %>
             <% end %>
           </a>
         </td>

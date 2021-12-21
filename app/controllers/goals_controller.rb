@@ -41,16 +41,27 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-    binding.irb
     if current_user == @goal.user
-      if GoalTagging.where(goal_tag_id: @goal.goal_tags.ids[0]).count === 1 #もし紐ついたタギングが最後の１つだったら
-        GoalTag.find(@goal.goal_tags.ids[0]).destroy #何にも紐ついていないタグのデータを削除する
-        @goal.destroy
-        redirect_to user_path(@goal.user.id), notice: "目標を削除しました"
-      else
-        @goal.destroy
-        redirect_to user_path(@goal.user.id), notice: "目標を削除しました"
+
+      #目標タグの削除
+      @goal.goal_tags.ids.each do |goal_tag_id|
+        if GoalTagging.where(goal_tag_id: goal_tag_id).count === 1 #もし紐ついたタギングが最後の１つだったら
+          GoalTag.find(goal_tag_id).destroy #何にも紐ついていないタグのデータを削除する
+        end
       end
+
+      #目標に紐ついたつぶやきとタグの削除
+      @goal.tweets.each do |tweet|
+        tweet.tweet_tags.ids.each do |tweet_tag_id|
+          if TweetTagging.where(tweet_tag_id: tweet_tag_id).count === 1 #もし紐ついたタギングが最後の１つだったら
+            TweetTag.find(tweet_tag_id).destroy #何にも紐ついていないタグのデータを削除する
+          end
+        end
+        tweet.destroy
+      end
+
+      @goal.destroy
+      redirect_to user_path(@goal.user.id), notice: "目標を削除しました"
     else
       redirect_to user_path(@goal.user.id), notice: "他のユーザーの目標は削除できません"
     end
