@@ -1,3 +1,7 @@
+<% if resource.errors.any? || alert %>
+  <%= javascript_pack_tag 'registrations_render' %>
+<% end %>
+
 <div class="col-md-8" id="main_div">
   <div class="goal_create">
 

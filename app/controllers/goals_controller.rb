@@ -41,16 +41,23 @@ class GoalsController < ApplicationController
   end
 
   def destroy
+    binding.irb
     if current_user == @goal.user
-      @goal.destroy
-      redirect_to user_path(@goal.user.id), notice: "目標を削除しました"
+      if GoalTagging.where(goal_tag_id: @goal.goal_tags.ids[0]).count === 1 #もし紐ついたタギングが最後の１つだったら
+        GoalTag.find(@goal.goal_tags.ids[0]).destroy #何にも紐ついていないタグのデータを削除する
+        @goal.destroy
+        redirect_to user_path(@goal.user.id), notice: "目標を削除しました"
+      else
+        @goal.destroy
+        redirect_to user_path(@goal.user.id), notice: "目標を削除しました"
+      end
     else
       redirect_to user_path(@goal.user.id), notice: "他のユーザーの目標は削除できません"
     end
   end
 
   private
-  
+
   def set_property
     @goal = Goal.find(params[:id])
   end

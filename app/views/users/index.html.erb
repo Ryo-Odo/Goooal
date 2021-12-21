@@ -40,6 +40,11 @@
       <% @users.each do |user| %>
       <tr>
         <td class="home_td">
+          <% if user.profile.image.url.present?%>
+            <a class=""><%= image_tag user.profile.image.url %></a>
+          <% else %>
+            <a class=""><%= image_tag src="/assets/default.png", size: "60x60" %></a>
+          <% end %>
           <a>
             <%= link_to user.profile.user_name, user_path(user.id), :class => 'tweet_user_name' %>
           </a>
