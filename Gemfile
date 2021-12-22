@@ -32,6 +32,8 @@ gem 'rails_admin', '~> 2.0'
 gem 'cancancan'
 gem 'ransack'
 gem 'gon'
+gem 'carrierwave'
+gem 'mini_magick'
 
 
 # Reduces boot times through caching; required in config/boot.rb

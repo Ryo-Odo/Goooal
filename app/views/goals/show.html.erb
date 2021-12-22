@@ -4,11 +4,16 @@
     <table>
       <tr>
         <td class="home_td">
+          <% if @goal.user.profile.image.url.present?%>
+            <a class=""><%= image_tag @goal.user.profile.image.url %></a>
+          <% else %>
+            <a class=""><%= image_tag src="/assets/default.png", size: "60x60" %></a>
+          <% end %>
           <a><%= link_to @goal.user.profile.user_name, user_path(@goal.user.id), :class => 'tweet_user_name' %></a>
           <a><%= link_to "@" + @goal.user.user_account_name, user_path(@goal.user.id), :class => 'tweet_account_name' %></a>
           <a>
             <% if current_user == @goal.user%>
-              <%= link_to '削除', goal_path(@goal.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, :class => 'delete_link' %>
+              <%= link_to '削除', goal_path(@goal.id), method: :delete, data: { confirm: '本当にこの目標を削除していいですか？' }, :class => 'delete_link' %>
             <% end %>
           </a>
         </td>
@@ -41,6 +46,11 @@
       <% @tweets.each do |tweet| %>
       <tr>
         <td class="home_td">
+          <% if tweet.goal.user.profile.image.url.present?%>
+            <a class=""><%= image_tag tweet.goal.user.profile.image.url %></a>
+          <% else %>
+            <a class=""><%= image_tag src="/assets/default.png", size: "60x60" %></a>
+          <% end %>
           <a>
             <%= link_to tweet.goal.user.profile.user_name, user_path(@goal.user.id), :class => 'tweet_user_name' %>
           </a>

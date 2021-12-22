@@ -21,6 +21,11 @@
           <% if user_signed_in? %>
           <td><%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'header_link'  %></td>
           <td>
+            <% if current_user.profile.image.url.present?%>
+              <a class=""><%= image_tag current_user.profile.image.url, size: "30x30" %></a>
+            <% else %>
+              <a class=""><%= image_tag src="/assets/default.png", size: "30x30" %></a>
+            <% end %>
             <a><%= link_to current_user.profile.user_name, user_path(current_user.id), :class => 'header_link' %></a>
             <a><%= link_to "@" + current_user.user_account_name, user_path(current_user.id), :class => 'header_link' %></a>
           </td>

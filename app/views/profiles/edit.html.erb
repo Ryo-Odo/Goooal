@@ -21,6 +21,13 @@
 
     <div class="profile_form">
       <%= form_with( model: @profile, local: true ) do |f| %>
+        <%= f.label :image, "アイコン画像" %><br>
+        <% if @profile.image.url.present?%>
+          <%= image_tag @profile.image.url %><br>
+        <% else %>
+          <%= image_tag src="/assets/default.png", size: "60x60" %><br>
+        <% end %>
+        <%= f.file_field :image %><br>
         <%= f.label :user_name, "ユーザー名" %><br>
         <%= f.text_field :user_name, :placeholder => "15文字以内で入力", :class => 'profile_text_field'%> <br>
         <%= f.label :introduction, "自己紹介" %><br>

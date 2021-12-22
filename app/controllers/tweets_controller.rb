@@ -47,6 +47,13 @@ class TweetsController < ApplicationController
   def destroy
     @tweet = Tweet.find(params[:id])
     if current_user == @tweet.goal.user
+
+      @tweet.tweet_tags.ids.each do |tweet_tag_id|
+        if TweetTagging.where(tweet_tag_id: tweet_tag_id).count === 1 #もし紐ついたタギングが最後の１つだったら
+          TweetTag.find(tweet_tag_id).destroy #何にも紐ついていないタグのデータを削除する
+        end
+      end
+
       @tweet.destroy
       redirect_to goal_path(@tweet.goal.id), notice: "つぶやきを削除しました"
     else

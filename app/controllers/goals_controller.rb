@@ -42,6 +42,24 @@ class GoalsController < ApplicationController
 
   def destroy
     if current_user == @goal.user
+
+      #目標タグの削除
+      @goal.goal_tags.ids.each do |goal_tag_id|
+        if GoalTagging.where(goal_tag_id: goal_tag_id).count === 1 #もし紐ついたタギングが最後の１つだったら
+          GoalTag.find(goal_tag_id).destroy #何にも紐ついていないタグのデータを削除する
+        end
+      end
+
+      #目標に紐ついたつぶやきとタグの削除
+      @goal.tweets.each do |tweet|
+        tweet.tweet_tags.ids.each do |tweet_tag_id|
+          if TweetTagging.where(tweet_tag_id: tweet_tag_id).count === 1 #もし紐ついたタギングが最後の１つだったら
+            TweetTag.find(tweet_tag_id).destroy #何にも紐ついていないタグのデータを削除する
+          end
+        end
+        tweet.destroy
+      end
+
       @goal.destroy
       redirect_to user_path(@goal.user.id), notice: "目標を削除しました"
     else
@@ -50,7 +68,7 @@ class GoalsController < ApplicationController
   end
 
   private
-  
+
   def set_property
     @goal = Goal.find(params[:id])
   end

@@ -39,6 +39,11 @@
       <% @goals.each do |goal| %>
       <tr>
         <td class="home_td">
+          <% if goal.user.profile.image.url.present?%>
+            <a class=""><%= image_tag goal.user.profile.image.url %></a>
+          <% else %>
+            <a class=""><%= image_tag src="/assets/default.png", size: "60x60" %></a>
+          <% end %>
           <a>
             <%= link_to goal.user.profile.user_name, user_path(goal.user.id), :class => 'tweet_user_name' %>
           </a>
